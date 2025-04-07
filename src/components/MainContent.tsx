@@ -11,7 +11,6 @@ import {
   faBolt,
   faUsers,
   faMobileAlt,
-
   faArrowRight,
 
 } from "@fortawesome/free-solid-svg-icons";

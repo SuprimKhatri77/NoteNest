@@ -1,27 +1,20 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faSearch,
-  faCalculator,
-  faFlask,
-  faDna,
-  faAtom,
-  faFilePdf,
-  faCheckCircle,
-  faBolt,
-  faUsers,
-  faMobileAlt,
-  faEnvelope,
-  faPhone,
-  faMapMarkerAlt,
-  faBars,
-  faArrowRight,
-  faDownload,
-  faStar,
+  faFilePdf, faDownload,faStar
 } from "@fortawesome/free-solid-svg-icons";
 
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-function PaperItem({ title, downloads, rating }: {title:string, downloads:string, rating:any}) {
+
+interface PastPaperItemProps {
+  rating: string;
+  title: string;
+  downloads: string;
+}
+
+
+function PaperItem({ title, downloads, rating }: PastPaperItemProps) {
   return (
     <div className="flex items-center p-5 border border-gray-200 rounded-xl transition-all bg-gray-50 hover:border-indigo-300 hover:shadow hover:translate-x-1 md:flex-row flex-col text-center md:text-left dark:bg-gray-700 dark:border-gray-600 group">
 

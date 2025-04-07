@@ -4,7 +4,17 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-function SubjectCard({ icon, title, description, noteCount }: { icon: any, title: string, description: string, noteCount: string }) {
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
+
+interface SubjectCardProps {
+  icon: IconDefinition;
+  title: string;
+  description: string;
+  noteCount: string;
+}
+
+function SubjectCard({ icon, title, description, noteCount }: SubjectCardProps)  {
   return (
     <div className="bg-white rounded-xl p-8 shadow transition-all border border-transparent hover:translate-y-[-10px] hover:shadow-lg hover:border-gray-200 relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-[5px] before:bg-indigo-600 before:scale-x-0 before:origin-right before:transition-transform hover:before:scale-x-100 hover:before:origin-left dark:bg-gray-800 dark:border-gray-700 dark:hover:border-gray-500 group">
       
