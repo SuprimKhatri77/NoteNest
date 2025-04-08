@@ -35,7 +35,7 @@ export default function PastPapersPage() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-400">Past Papers</h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Access previous year&#39;s question papers to enhance your exam preparation
+            Access previous year&apos;s question papers to enhance your exam preparation
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default function PastPapersPage() {
               </svg>
             </div>
             <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-gray-100">No papers found</h3>
-            <p className="mt-1 text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
+            <p className="mt-1 text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you&apos;re looking for.</p>
           </div>
         )}
 
