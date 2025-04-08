@@ -35,7 +35,7 @@ export default function PastPapersPage() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-400">Past Papers</h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Access previous year&apos;s question papers to enhance your exam preparation
+            Access previous year&#39;s question papers to enhance your exam preparation
           </p>
         </div>
 
