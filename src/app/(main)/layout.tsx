@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer/Footer";
@@ -9,9 +9,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'], // choose only the weights you need
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-poppins', // optional: CSS variable for custom usage
+  variable: '--font-poppins',
 })
 
 export const metadata: Metadata = {
@@ -24,6 +24,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
@@ -46,3 +48,4 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+

@@ -33,7 +33,7 @@ export default function Navbar() {
                         Home
                     </Link>
                     <Link href="/subjects" className={`${checkActiveLink("/subjects")}  dark:text-gray-200`}>
-                        Subjects
+                        Notes
                     </Link>
                     <Link
                         href="/past-papers"
@@ -64,14 +64,14 @@ export default function Navbar() {
                     </div>
                     <SignedOut>
                         <SignUpButton mode="modal">
-                    <button className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
-                        Sign up
-                    </button>
+                            <button className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
+                                Sign up
+                            </button>
                         </SignUpButton>
-                    <SignInButton mode="modal">
-                        <button className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
-                            Login
-                        </button>
+                        <SignInButton mode="modal">
+                            <button className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
+                                Login
+                            </button>
                         </SignInButton>
                     </SignedOut>
 
@@ -120,16 +120,21 @@ export default function Navbar() {
                     ${isActive ? "translate-x-0" : "translate-x-full"
                     }`}
             >
-                <FontAwesomeIcon
-                    icon={faXmark}
-                    className="mr-auto text-2xl dark:text-gray-200"
-                    onClick={() => setIsActive(false)}
-                />
+                <div className="flex items-center justify-between">
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
+                    <FontAwesomeIcon
+                        icon={faXmark}
+                        className="mr-5 text-2xl dark:text-gray-200"
+                        onClick={() => setIsActive(false)}
+                    />
+                </div>
                 <Link href="/" className={`${checkActiveLink("/")}`}>
                     Home
                 </Link>
                 <Link href="/subjects" className={`${checkActiveLink("/subjects")}`}>
-                    Subjects
+                    Notes
                 </Link>
                 <Link
                     href="/past-papers"
@@ -143,6 +148,20 @@ export default function Navbar() {
                 <Link href="/about" className={`${checkActiveLink("/about")}`}>
                     About
                 </Link>
+                <SignedOut>
+                    <SignUpButton mode="modal">
+                        <button className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
+                            Sign up
+                        </button>
+                    </SignUpButton>
+                    <SignInButton mode="modal">
+                        <button className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
+                            Login
+                        </button>
+                    </SignInButton>
+                </SignedOut>
+
+
             </div>
         </header>
     );

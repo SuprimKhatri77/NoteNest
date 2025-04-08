@@ -5,65 +5,65 @@ import Link from 'next/link';
 import { BookOpen, FileText, BookmarkIcon, Search } from 'lucide-react';
 
 type Subject = {
-    id: number
-    name: string
-    description: string
-    noteCount: number
-    hwCount: number
-    pyqCount: number
+  id: number
+  name: string
+  description: string
+  noteCount: number
+  hwCount: number
+  pyqCount: number
 }
 
 export default function SubjectsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const subjects: Subject[] = [
-    { 
-      id: 1, 
-      name: 'Mathematics', 
-      description: 'Calculus, Linear Algebra, Discrete Mathematics, and more', 
-      noteCount: 24, 
-      hwCount: 12, 
-      pyqCount: 18 
+    {
+      id: 1,
+      name: 'Mathematics',
+      description: 'Calculus, Linear Algebra, Discrete Mathematics, and more',
+      noteCount: 24,
+      hwCount: 12,
+      pyqCount: 18
     },
-    { 
-      id: 2, 
-      name: 'Computer Science', 
-      description: 'Data Structures, Algorithms, Programming Languages, and more', 
-      noteCount: 32, 
-      hwCount: 16, 
-      pyqCount: 20 
+    {
+      id: 2,
+      name: 'Computer Science',
+      description: 'Data Structures, Algorithms, Programming Languages, and more',
+      noteCount: 32,
+      hwCount: 16,
+      pyqCount: 20
     },
-    { 
-      id: 3, 
-      name: 'Physics', 
-      description: 'Classical Mechanics, Thermodynamics, Quantum Physics, and more', 
-      noteCount: 28, 
-      hwCount: 14, 
-      pyqCount: 22 
+    {
+      id: 3,
+      name: 'Physics',
+      description: 'Classical Mechanics, Thermodynamics, Quantum Physics, and more',
+      noteCount: 28,
+      hwCount: 14,
+      pyqCount: 22
     },
-    { 
-      id: 4, 
-      name: 'Chemistry', 
-      description: 'Organic Chemistry, Inorganic Chemistry, Physical Chemistry, and more', 
-      noteCount: 20, 
-      hwCount: 10, 
-      pyqCount: 15 
+    {
+      id: 4,
+      name: 'Chemistry',
+      description: 'Organic Chemistry, Inorganic Chemistry, Physical Chemistry, and more',
+      noteCount: 20,
+      hwCount: 10,
+      pyqCount: 15
     },
-    { 
-      id: 5, 
-      name: 'Biology', 
-      description: 'Cell Biology, Genetics, Ecology, and more', 
-      noteCount: 18, 
-      hwCount: 9, 
-      pyqCount: 12 
+    {
+      id: 5,
+      name: 'Biology',
+      description: 'Cell Biology, Genetics, Ecology, and more',
+      noteCount: 18,
+      hwCount: 9,
+      pyqCount: 12
     },
-    { 
-      id: 6, 
-      name: 'Economics', 
-      description: 'Microeconomics, Macroeconomics, International Economics, and more', 
-      noteCount: 16, 
-      hwCount: 8, 
-      pyqCount: 10 
+    {
+      id: 6,
+      name: 'Economics',
+      description: 'Microeconomics, Macroeconomics, International Economics, and more',
+      noteCount: 16,
+      hwCount: 8,
+      pyqCount: 10
     },
   ];
 
@@ -105,7 +105,7 @@ export default function SubjectsPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-200 dark:border-gray-700 cursor-pointer h-full flex flex-col">
                 <h2 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{subject.name}</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">{subject.description}</p>
-                
+
                 <div className="mt-auto">
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                     <div className="flex justify-between text-sm">
@@ -131,7 +131,7 @@ export default function SubjectsPage() {
 
         {filteredSubjects.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600 dark:text-gray-300">No subjects found matching "{searchTerm}"</p>
+            <p className="text-gray-600 dark:text-gray-300">No subjects found matching &quot;{searchTerm}&quot;</p>
           </div>
         )}
       </div>

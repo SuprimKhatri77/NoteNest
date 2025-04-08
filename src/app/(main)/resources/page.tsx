@@ -5,30 +5,29 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 type Resource = {
-   notes: {
-       id: number
-       title: string
-       subject: string
-       downloads: number
-    }[] ,
-    homeworks: {
-        id: number,
-        title: string
-        subject: string
-        deadline: string
-    }[],
-    pyqs: {
-        id: number
-        title: string
-        subject: string
-        year: string
-    }[]
+  notes: {
+    id: number
+    title: string
+    subject: string
+    downloads: number
+  }[],
+  homeworks: {
+    id: number,
+    title: string
+    subject: string
+    deadline: string
+  }[],
+  pyqs: {
+    id: number
+    title: string
+    subject: string
+    year: string
+  }[]
 }
 
 export default function ResourcesPage() {
   const [activeTab, setActiveTab] = useState('notes');
 
-  // Sample resource data (replace with your actual data)
   const resources: Resource = {
     notes: [
       { id: 1, title: "Data Structures Notes", subject: "Computer Science", downloads: 324 },
@@ -49,30 +48,24 @@ export default function ResourcesPage() {
     ]
   };
 
-  // Filter function for the search input
   const [searchQuery, setSearchQuery] = useState('');
-const [resourceType, setResourceType] = useState<'notes' | 'homeworks' | 'pyqs'>('notes');
+  const [resourceType] = useState<'notes' | 'homeworks' | 'pyqs'>('notes');
 
-// Assuming the user is searching within 'notes' category:
-const filteredResources = resources[resourceType].filter((resource) =>
-  resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  resource.subject.toLowerCase().includes(searchQuery.toLowerCase())
-);
+  const filteredResources = resources[resourceType].filter((resource) =>
+    resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    resource.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  
+
 
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <Head>
-        <title>Resources | Your Study Notes Site</title>
-        <meta name="description" content="Access notes, homework solutions, and previous year questions" />
-      </Head>
-      
+
+
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">Study Resources</h1>
-        
-        {/* Search Bar */}
+
         <div className="mb-6">
           <div className="relative">
             <input
@@ -89,41 +82,38 @@ const filteredResources = resources[resourceType].filter((resource) =>
             </div>
           </div>
         </div>
-        
+
         {/* Resource Tabs */}
         <div className="flex space-x-1 mb-6 bg-gray-200 dark:bg-gray-700 p-1 rounded-lg">
           <button
             onClick={() => setActiveTab('notes')}
-            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${
-              activeTab === 'notes' 
-                ? 'bg-indigo-600 text-white' 
-                : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${activeTab === 'notes'
+              ? 'bg-indigo-600 text-white'
+              : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
           >
             Notes
           </button>
           <button
             onClick={() => setActiveTab('homeworks')}
-            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${
-              activeTab === 'homeworks' 
-                ? 'bg-indigo-600 text-white' 
-                : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${activeTab === 'homeworks'
+              ? 'bg-indigo-600 text-white'
+              : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
           >
             Homeworks
           </button>
           <button
             onClick={() => setActiveTab('pyqs')}
-            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${
-              activeTab === 'pyqs' 
-                ? 'bg-indigo-600 text-white' 
-                : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition duration-150 ease-in-out ${activeTab === 'pyqs'
+              ? 'bg-indigo-600 text-white'
+              : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
           >
             Previous Year Questions
           </button>
         </div>
-        
+
         {/* Resource Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((resource) => (
@@ -135,7 +125,7 @@ const filteredResources = resources[resourceType].filter((resource) =>
                     {resource.subject}
                   </span>
                 </div>
-                
+
                 <div className="mt-4 flex items-center justify-between">
                   {/* {activeTab === 'notes' && (
                     <div className="text-sm text-gray-500 dark:text-gray-300">
@@ -154,7 +144,7 @@ const filteredResources = resources[resourceType].filter((resource) =>
                       <span>Year: {resource.year}</span>
                     </div>
                   )} */}
-                  
+
                   <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-300">
                     Download
                   </button>
@@ -163,18 +153,18 @@ const filteredResources = resources[resourceType].filter((resource) =>
             </div>
           ))}
         </div>
-        
+
         {filteredResources.length === 0 && (
           <div className="text-center py-10">
             <div className="text-gray-500 dark:text-gray-400">No resources found matching your search.</div>
           </div>
         )}
-        
+
         {/* Upload Resources Section */}
         <div className="mt-12 bg-indigo-50 dark:bg-gray-800 p-6 rounded-lg border border-indigo-100 dark:border-gray-700">
           <h2 className="text-xl font-semibold text-indigo-700 dark:text-indigo-400 mb-4">Contribute Resources</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Help fellow students by sharing your notes, homework solutions, or previous year questions.
+            Help fellow students by sharing your notes, homework solutions, or previous year&apos;s questions.
           </p>
           <div className="flex space-x-4">
             <button className="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded transition-colors duration-300">
@@ -189,31 +179,8 @@ const filteredResources = resources[resourceType].filter((resource) =>
           </div>
         </div>
       </main>
-      
-      {/* Quick Links Footer */}
-      <footer className="bg-white dark:bg-gray-800 shadow-md mt-12">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-center md:text-left mb-4 md:mb-0">
-              <h3 className="font-semibold text-indigo-600 dark:text-indigo-400">Quick Links</h3>
-            </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/dashboard" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
-                Dashboard
-              </Link>
-              <Link href="/subjects" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
-                Subjects
-              </Link>
-              <Link href="/faq" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
-                FAQ
-              </Link>
-              <Link href="/contact" className="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+
+
     </div>
   );
 }

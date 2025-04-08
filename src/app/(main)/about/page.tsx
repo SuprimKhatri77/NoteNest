@@ -1,4 +1,3 @@
-// components/AboutPage.jsx
 import React from 'react';
 import Link from 'next/link';
 
@@ -6,7 +5,6 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4">
             About StudyNotes
@@ -15,24 +13,22 @@ const AboutPage = () => {
             Your ultimate resource for academic excellence
           </p>
         </div>
-        
-        {/* Our Mission Section */}
+
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-10">
           <h2 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">
             Our Mission
           </h2>
           <p className="text-gray-700 dark:text-gray-200 mb-4">
-            At StudyNotes, we believe that quality study resources should be accessible to everyone. 
-            Our platform was created to help students excel in their academic journey by providing 
+            At StudyNotes, we believe that quality study resources should be accessible to everyone.
+            Our platform was created to help students excel in their academic journey by providing
             comprehensive notes, homework solutions, and previous year question papers.
           </p>
           <p className="text-gray-700 dark:text-gray-200">
-            Whether you're cramming for finals or looking to deepen your understanding of course materials,
-            we've got you covered with high-quality, peer-reviewed content.
+            Whether you&apos;re cramming for finals or looking to deepen your understanding of course materials,
+            we&apos;ve got you covered with high-quality, peer-reviewed content.
           </p>
         </div>
-        
-        {/* What We Offer Section */}
+
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div className="text-indigo-500 dark:text-indigo-400 mb-2">
@@ -47,7 +43,7 @@ const AboutPage = () => {
               Detailed lecture notes organized by subject, topic, and difficulty level.
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div className="text-indigo-500 dark:text-indigo-400 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +57,7 @@ const AboutPage = () => {
               Step-by-step solutions to common homework problems with clear explanations.
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div className="text-indigo-500 dark:text-indigo-400 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,25 +72,23 @@ const AboutPage = () => {
             </p>
           </div>
         </div>
-        
-        {/* Our Story Section */}
+
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-10">
           <h2 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">
             Our Story
           </h2>
           <p className="text-gray-700 dark:text-gray-200 mb-4">
-            StudyNotes began as a small project by a group of university students who wanted to create 
-            a better way to share and access quality study materials. What started as shared Google Docs 
+            StudyNotes began as a small project by a group of university students who wanted to create
+            a better way to share and access quality study materials. What started as shared Google Docs
             quickly evolved into a comprehensive platform serving thousands of students across multiple institutions.
           </p>
           <p className="text-gray-700 dark:text-gray-200">
-            Today, we're proud to offer a growing library of resources contributed by both students and educators, 
-            all vetted for accuracy and educational value. Our community-driven approach ensures that our content 
+            Today, we&apos;re proud to offer a growing library of resources contributed by both students and educators,
+            all vetted for accuracy and educational value. Our community-driven approach ensures that our content
             remains relevant, up-to-date, and aligned with current curricula.
           </p>
         </div>
-        
-        {/* Join Us Section */}
+
         <div className="bg-indigo-600 dark:bg-indigo-800 rounded-lg shadow-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-4">
             Join Our Community

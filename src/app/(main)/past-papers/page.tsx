@@ -1,4 +1,3 @@
-// pages/past-papers.js
 "use client"
 import { useState } from 'react';
 import Head from 'next/head';
@@ -10,7 +9,6 @@ export default function PastPapersPage() {
   const [selectedYear, setSelectedYear] = useState('All Years');
   const [selectedSemester, setSelectedSemester] = useState('All Semesters');
 
-  // Sample data - replace with your actual data
   const papers = [
     { id: 1, title: 'Data Structures and Algorithms', year: '2024', semester: 'Spring', subject: 'Computer Science', downloads: 543 },
     { id: 2, title: 'Calculus II', year: '2023', semester: 'Fall', subject: 'Mathematics', downloads: 421 },
@@ -20,11 +18,10 @@ export default function PastPapersPage() {
     { id: 6, title: 'Microeconomics', year: '2021', semester: 'Fall', subject: 'Economics', downloads: 317 },
   ];
 
-  // Filter papers based on selected filters
   const filteredPapers = papers.filter(paper => {
     return (selectedSubject === 'All Subjects' || paper.subject === selectedSubject) &&
-           (selectedYear === 'All Years' || paper.year === selectedYear) &&
-           (selectedSemester === 'All Semesters' || paper.semester === selectedSemester);
+      (selectedYear === 'All Years' || paper.year === selectedYear) &&
+      (selectedSemester === 'All Semesters' || paper.semester === selectedSemester);
   });
 
   return (
@@ -33,16 +30,15 @@ export default function PastPapersPage() {
         <title>Past Papers | StudyNotes</title>
         <meta name="description" content="Access past papers, homework solutions, and practice questions" />
       </Head>
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-400">Past Papers</h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Access previous years' question papers to enhance your exam preparation
+            Access previous year&apos;s question papers to enhance your exam preparation
           </p>
         </div>
-        
-        {/* Search and Filter Section */}
+
         <div className="mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="relative flex-1">
@@ -55,7 +51,7 @@ export default function PastPapersPage() {
                 className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            
+
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center space-x-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-800 transition"
@@ -65,8 +61,7 @@ export default function PastPapersPage() {
               <ChevronDown className={`h-4 w-4 transform ${showFilters ? 'rotate-180' : ''} transition-transform`} />
             </button>
           </div>
-          
-          {/* Filter options */}
+
           {showFilters && (
             <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -87,7 +82,7 @@ export default function PastPapersPage() {
                     <option>Electrical Engineering</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Year</label>
                   <select
@@ -103,7 +98,7 @@ export default function PastPapersPage() {
                     <option>2020</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Semester</label>
                   <select
@@ -119,7 +114,7 @@ export default function PastPapersPage() {
                   </select>
                 </div>
               </div>
-              
+
               <div className="mt-4 flex justify-end">
                 <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">
                   Apply Filters
@@ -128,8 +123,7 @@ export default function PastPapersPage() {
             </div>
           )}
         </div>
-        
-        {/* Papers Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPapers.map((paper) => (
             <div key={paper.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
@@ -143,7 +137,7 @@ export default function PastPapersPage() {
                     {paper.semester} {paper.year}
                   </span>
                 </div>
-                
+
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
                     <Download className="h-4 w-4 mr-1" /> {paper.downloads} downloads
@@ -156,7 +150,7 @@ export default function PastPapersPage() {
             </div>
           ))}
         </div>
-        
+
         {filteredPapers.length === 0 && (
           <div className="text-center py-12">
             <div className="mx-auto h-16 w-16 text-gray-400">
@@ -168,8 +162,7 @@ export default function PastPapersPage() {
             <p className="mt-1 text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
           </div>
         )}
-        
-        {/* Pagination */}
+
         <div className="mt-8 flex items-center justify-center">
           <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
             <a href="#" className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
