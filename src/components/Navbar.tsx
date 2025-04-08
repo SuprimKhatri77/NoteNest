@@ -18,7 +18,7 @@ export default function Navbar() {
 
     function checkActiveLink(href: string) {
         if (pathName === href)
-            return `font-medium text-indigo-600
+            return `font-medium text-indigo-600 dark:text-indigo-600
                     relative before:content-[''] before:absolute before:h-1 md:before:w-full  before:bg-indigo-700 before:-bottom-2 before:rounded-xl`;
         else return `dark:text-gray-200`
     }
