@@ -25,10 +25,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         disableTransitionOnChange
                     >
                         <div className="flex gap-2 min-w-full min-h-screen">
-                            <div className="w-[20%] shrink-0">
+                            <div className="w-[20%] shrink-0 h-full">
                                 <AdminNavbar />
                             </div>
-                            <div className="w-[77%] mx-auto">
+                            <div className="w-[77%] mx-auto flex flex-col justify-center items-center">
                                 {children}
                             </div>
                         </div>

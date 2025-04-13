@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ModeToggle from "./ModeToggle";
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 
 export default function Navbar() {
     const [isActive, setIsActive] = useState(false);
@@ -62,7 +62,7 @@ export default function Navbar() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4" />
                         </button>
                     </div>
-                    <SignedOut>
+                    {/* <SignedOut>
                         <SignUpButton mode="modal">
                             <button className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
                                 Sign up
@@ -77,7 +77,32 @@ export default function Navbar() {
 
                     <SignedIn>
                         <UserButton />
-                    </SignedIn>
+                    </SignedIn> */}
+                    <ClerkLoading>
+                        <div
+                            className="inline-block border-indigo-600 h-8 w-8 animate-spin rounded-full border-4 border-solid  border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] 
+                         dark:text-white"
+                            role="status">
+                            <span
+                                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                            >Loading...</span
+                            >
+
+                        </div>
+                    </ClerkLoading>
+                    <ClerkLoaded>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                        <SignedOut>
+                            <Link href="/sign-up" className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
+                                Sign up
+                            </Link>
+                            <Link href="/sign-in" className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
+                                Login
+                            </Link>
+                        </SignedOut>
+                    </ClerkLoaded>
                 </div>
                 <div>
                     <ModeToggle />

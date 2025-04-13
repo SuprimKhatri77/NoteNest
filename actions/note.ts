@@ -1,0 +1,58 @@
+"use server";
+
+import { z } from "zod";
+import { createNote } from "../db/prisma";
+import { redirect } from "next/navigation";
+
+export type Errors = {
+  title?: string;
+  description?: string;
+  notesUrl?: string;
+  className?: string;
+  subjectName?: string;
+};
+
+export type FormState = {
+  errors: Errors;
+};
+
+export default async function addNote(
+  prevState: FormState,
+  formData: FormData
+) {
+  const formFields = Object.fromEntries(formData);
+
+  const NoteData = z.object({
+    title: z.string().max(80),
+    description: z.string().max(260),
+    notesUrl: z.string(),
+    className: z.string().max(70),
+    subjectName: z.string().max(70),
+  });
+
+  const validateFields = NoteData.safeParse(formFields);
+
+  if (!validateFields.success) {
+    const fieldErrors = validateFields.error.flatten().fieldErrors;
+    return {
+      errors: {
+        title: fieldErrors.title?.[0],
+        description: fieldErrors.description?.[0],
+        notesUrl: fieldErrors.notesUrl?.[0],
+        className: fieldErrors.className?.[0],
+        subjectName: fieldErrors.subjectName?.[0],
+      },
+    };
+  }
+
+  console.log("Validated data: ", validateFields.data);
+  await createNote(validateFields.data);
+  console.log("Note created");
+
+  //   try {
+  //     await createNote(validateFields.data);
+  //   } catch (err) {
+  //     console.log("error: ", err);
+  //   }
+  return redirect("/admin");
+}
