@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <div className="w-[20%] shrink-0 h-full">
                                 <AdminNavbar />
                             </div>
-                            <div className="w-[77%] mx-auto flex flex-col justify-center items-center">
+                            <div className="w-[77%] mx-auto flex flex-col items-center mt-5">
                                 {children}
                             </div>
                         </div>

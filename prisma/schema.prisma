@@ -17,7 +17,7 @@ datasource db {
 model Subject {
   id String @id @default(cuid())
   name String @unique
-  description String
+  description String?
   classes Class[]
 }
 

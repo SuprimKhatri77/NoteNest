@@ -1,76 +1,25 @@
-"use client"
+'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { BookOpen, FileText, BookmarkIcon, Search } from 'lucide-react';
 
 type Subject = {
-    id: number
-    name: string
-    description: string
-    noteCount: number
-    hwCount: number
-    pyqCount: number
-}
+    id: string;
+    name: string;
+    description: string | null;
+    noteCount: number;
+    hwCount: number;
+    pyqCount: number;
+};
 
-
-export default function AdminPage() {
+export default function AdminPage({ subjects }: { subjects: Subject[] }) {
     const [searchTerm, setSearchTerm] = useState('');
-
-    const subjects: Subject[] = [
-        {
-            id: 1,
-            name: 'Mathematics',
-            description: 'Calculus, Linear Algebra, Discrete Mathematics, and more',
-            noteCount: 24,
-            hwCount: 12,
-            pyqCount: 18
-        },
-        {
-            id: 2,
-            name: 'Computer Science',
-            description: 'Data Structures, Algorithms, Programming Languages, and more',
-            noteCount: 32,
-            hwCount: 16,
-            pyqCount: 20
-        },
-        {
-            id: 3,
-            name: 'Physics',
-            description: 'Classical Mechanics, Thermodynamics, Quantum Physics, and more',
-            noteCount: 28,
-            hwCount: 14,
-            pyqCount: 22
-        },
-        {
-            id: 4,
-            name: 'Chemistry',
-            description: 'Organic Chemistry, Inorganic Chemistry, Physical Chemistry, and more',
-            noteCount: 20,
-            hwCount: 10,
-            pyqCount: 15
-        },
-        {
-            id: 5,
-            name: 'Biology',
-            description: 'Cell Biology, Genetics, Ecology, and more',
-            noteCount: 18,
-            hwCount: 9,
-            pyqCount: 12
-        },
-        {
-            id: 6,
-            name: 'Economics',
-            description: 'Microeconomics, Macroeconomics, International Economics, and more',
-            noteCount: 16,
-            hwCount: 8,
-            pyqCount: 10
-        },
-    ];
 
     const filteredSubjects = subjects.filter(subject =>
         subject.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        subject.description.toLowerCase().includes(searchTerm.toLowerCase())
+        subject.description?.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -97,10 +46,9 @@ export default function AdminPage() {
                     </div>
                 </div>
 
-                {/* Subjects Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredSubjects.map((subject) => (
-                        <Link href='' key={subject.id}>
+                        <Link href={`/admin/${subject.name.toLowerCase()}`} key={subject.id}>
                             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-200 dark:border-gray-700 cursor-pointer h-full flex flex-col">
                                 <h2 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{subject.name}</h2>
                                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">{subject.description}</p>
@@ -135,5 +83,5 @@ export default function AdminPage() {
                 )}
             </div>
         </div>
-    )
+    );
 }

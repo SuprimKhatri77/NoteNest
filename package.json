@@ -14,7 +14,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.6.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@uploadthing/react": "^7.3.0",
     "adminjs": "^7.5.12",
@@ -39,7 +39,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "prisma": "^6.5.0",
+    "prisma": "^6.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

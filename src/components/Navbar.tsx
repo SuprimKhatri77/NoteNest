@@ -32,7 +32,7 @@ export default function Navbar() {
                     <Link href="/" className={`${checkActiveLink("/")}  dark:text-gray-200`}>
                         Home
                     </Link>
-                    <Link href="/subjects" className={`${checkActiveLink("/subjects")}  dark:text-gray-200`}>
+                    <Link href="/notes" className={`${checkActiveLink("/notes")}  dark:text-gray-200`}>
                         Notes
                     </Link>
                     <Link
@@ -158,7 +158,7 @@ export default function Navbar() {
                 <Link href="/" className={`${checkActiveLink("/")}`}>
                     Home
                 </Link>
-                <Link href="/subjects" className={`${checkActiveLink("/subjects")}`}>
+                <Link href="/notes" className={`${checkActiveLink("/notes")}`}>
                     Notes
                 </Link>
                 <Link
