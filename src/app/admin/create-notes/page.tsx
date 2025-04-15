@@ -67,6 +67,17 @@ export default function AddNote() {
                                 className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                             />
                         </div>
+                        <div className="relative">
+                            <label className="text-gray-700 dark:text-gray-200 text-sm font-semibold">
+                                Chapter Number
+                            </label>
+                            <input
+                                type="text"
+                                name="chapterNumber"
+                                placeholder="eg: 1"
+                                className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
+                            />
+                        </div>
                     </div>
 
                     <div className="relative">
@@ -77,9 +88,14 @@ export default function AddNote() {
                         <div className="flex flex-col">
                             <CldUploadWidget
                                 uploadPreset="NoteNest"
+                                options={{
+                                    resourceType: "auto",
+                                }}
                                 onSuccess={(result) => {
                                     const info = result.info as { secure_url: string; original_filename: string };
                                     if (info?.secure_url && info.original_filename) {
+                                        // console.log(info.secure_url)
+
                                         setUploadedUrl(info.secure_url);
                                         setUploadedFileName(info.original_filename);
                                     }
@@ -111,13 +127,13 @@ export default function AddNote() {
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                    ) : (
+                                    ) : uploadedUrl.match(/\.pdf$/) !== null ? (
                                         <div className="w-16 h-16 mr-3 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 flex-shrink-0 flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                         </div>
-                                    )}
+                                    ) : null}
 
                                     <div className="flex-1">
                                         <p className="text-sm font-medium text-indigo-700 dark:text-indigo-300 truncate">
@@ -128,7 +144,6 @@ export default function AddNote() {
                                         </p>
                                         <input type="hidden" name="notesUrl" value={uploadedUrl} />
                                     </div>
-
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -143,6 +158,7 @@ export default function AddNote() {
                                     </button>
                                 </div>
                             )}
+
                         </div>
                     </div>
                 </div>

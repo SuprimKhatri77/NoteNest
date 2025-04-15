@@ -4,8 +4,8 @@ import ModeToggle from "./ModeToggle"
 export default function AdminNavbar() {
     return (
         <>
-            <header>
-                <nav className=" shadow-md min-h-screen flex flex-col gap-10 py-3 px-4 dark:border-r-3">
+            <header className="sticky top-0">
+                <nav className="flex flex-col gap-10 py-3 px-4">
                     <div className="flex justify-between items-center">
                         <Link href='/admin' className="cursor-pointer  text-3xl font-bold text-indigo-600">NoteNest</Link>
                         <ModeToggle />

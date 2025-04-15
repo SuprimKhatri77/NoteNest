@@ -2,9 +2,10 @@ import SubjectClassesPage from "@/components/AdminPages/SubjectClasses"
 import AdminPage from "@/components/AdminPages/AdminPage"
 import { prisma } from "../../../../db/prisma"
 import ChaptersPage from "@/components/AdminPages/Chapters"
+import ChapterNotes from "@/components/AdminPages/ChapterNotes"
 
-export default async function CatchAllRoutes({ params }: { params: { slug: string[] } }) {
-    const slug = await params.slug || []
+export default async function CatchAllRoutes({ params }: { params: { slug?: string[] } }) {
+    const slug = params.slug ?? []
 
     if (slug.length === 0) {
         const subjects = await prisma.subject.findMany({
@@ -80,7 +81,54 @@ export default async function CatchAllRoutes({ params }: { params: { slug: strin
     }
 
     if (slug.length === 2) {
-        return <ChaptersPage />
+
+        const className = slug[1]
+        const formattedClassName = decodeURIComponent(slug[1])
+        // console.log(formattedClassName);
+        const subjectClass = await prisma.class.findFirst({
+            where: {
+                name: formattedClassName
+            },
+            include: {
+                chapters: true
+            }
+        })
+
+        if (!subjectClass) {
+            throw new Error("Class not found!")
+        }
+
+        const chapters = subjectClass.chapters.map((chap) => ({
+            id: chap.id,
+            description: chap.description ?? "",
+            title: chap.title,
+            chapterNumber: chap.chapterNumber ?? ""
+        }))
+
+
+
+        return <ChaptersPage chapters={chapters} className={slug[1]} subjectName={slug[0]} />
+    }
+
+    if (slug.length === 3) {
+
+        const chapterName = decodeURIComponent(slug[2])
+        const chapterNumber = chapterName.replace("chapter-", "")
+        const chapter = await prisma.chapter.findFirst({
+            where: {
+                chapterNumber: chapterNumber
+            },
+        })
+
+        if (!chapter) {
+            throw new Error("Chapter not found!")
+        }
+
+        const notes = chapter
+        const className = decodeURIComponent(slug[1])
+        const classNumber = className.replace("class", "")
+
+        return <ChapterNotes notes={notes} className={classNumber} subjectName={slug[0]} />
     }
     return (
         <h1>404 page not found!</h1>

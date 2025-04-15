@@ -126,22 +126,22 @@ export default function ResourcesPage() {
 
                 <div className="mt-4 flex items-center justify-between">
                   {/* {activeTab === 'notes' && (
-                    <div className="text-sm text-gray-500 dark:text-gray-300">
-                      <span>{resource.downloads} downloads</span>
-                    </div>
-                  )}
-                  
-                  {activeTab === 'homeworks' && (
-                    <div className="text-sm text-gray-500 dark:text-gray-300">
-                      <span>Due: {resource.deadline}</span>
-                    </div>
-                  )}
-                  
-                  {activeTab === 'pyqs' && (
-                    <div className="text-sm text-gray-500 dark:text-gray-300">
-                      <span>Year: {resource.year}</span>
-                    </div>
-                  )} */}
+                      <div className="text-sm text-gray-500 dark:text-gray-300">
+                        <span>{resource.downloads} downloads</span>
+                      </div>
+                    )}
+                    
+                    {activeTab === 'homeworks' && (
+                      <div className="text-sm text-gray-500 dark:text-gray-300">
+                        <span>Due: {resource.deadline}</span>
+                      </div>
+                    )}
+                    
+                    {activeTab === 'pyqs' && (
+                      <div className="text-sm text-gray-500 dark:text-gray-300">
+                        <span>Year: {resource.year}</span>
+                      </div>
+                    )} */}
 
                   <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-300">
                     Download

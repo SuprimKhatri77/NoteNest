@@ -10,6 +10,7 @@ export type Errors = {
   notesUrl?: string;
   className?: string;
   subjectName?: string;
+  chapterNumber?: string;
 };
 
 export type FormState = {
@@ -28,6 +29,7 @@ export default async function addNote(
     notesUrl: z.string(),
     className: z.string().max(70),
     subjectName: z.string().max(70),
+    chapterNumber: z.string().max(30),
   });
 
   const validateFields = NoteData.safeParse(formFields);
@@ -41,18 +43,14 @@ export default async function addNote(
         notesUrl: fieldErrors.notesUrl?.[0],
         className: fieldErrors.className?.[0],
         subjectName: fieldErrors.subjectName?.[0],
+        chapterNumber: fieldErrors.chapterNumber?.[0],
       },
     };
   }
 
-  console.log("Validated data: ", validateFields.data);
+  // console.log("Validated data: ", validateFields.data) ;
   await createNote(validateFields.data);
-  console.log("Note created");
-
-  //   try {
-  //     await createNote(validateFields.data);
-  //   } catch (err) {
-  //     console.log("error: ", err);
+  // console.log("Note created");
   //   }
   return redirect("/admin");
 }

@@ -23,12 +23,14 @@ export async function createNote({
   notesUrl,
   className,
   subjectName,
+  chapterNumber,
 }: {
   title: string;
   description: string;
   notesUrl: string;
   className: string;
   subjectName: string;
+  chapterNumber: string;
 }) {
   let subjectData = await prisma.subject.findUnique({
     where: { name: subjectName },
@@ -66,6 +68,7 @@ export async function createNote({
       description,
       notesUrl,
       classId,
+      chapterNumber,
     },
   });
 }

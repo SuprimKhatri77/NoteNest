@@ -37,6 +37,7 @@ model Chapter{
   title String
   description String?
   notesUrl String
+  chapterNumber String? 
   class Class @relation(fields: [classId], references: [id])
   classId String
 
@@ -55,4 +56,5 @@ model ExamPaper {
 
   @@unique([classId,type])
 }
+
 
