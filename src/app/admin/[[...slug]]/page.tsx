@@ -3,6 +3,7 @@ import AdminPage from "@/components/AdminPages/AdminPage"
 import { prisma } from "../../../../db/prisma"
 import ChaptersPage from "@/components/AdminPages/Chapters"
 import ChapterNotes from "@/components/AdminPages/ChapterNotes"
+import EditNoteForm from "@/components/AdminPages/EditNoteForm"
 
 export default async function CatchAllRoutes({ params }: { params: { slug?: string[] } }) {
     const slug = params.slug ?? []
@@ -124,11 +125,34 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
             throw new Error("Chapter not found!")
         }
 
-        const notes = chapter
+        // const notes = chapter
         const className = decodeURIComponent(slug[1])
         const classNumber = className.replace("class", "")
 
-        return <ChapterNotes notes={notes} className={classNumber} subjectName={slug[0]} />
+        return <ChapterNotes chapter={chapter} classNumber={classNumber} className={className} subjectName={slug[0]} />
+    }
+
+
+    if (slug.length === 5 && slug[3] === "edit") {
+        const chapterId = decodeURIComponent(slug[4])
+
+        const chapter = await prisma.chapter.findUnique({
+            where: {
+                id: chapterId
+            },
+            include: {
+                class: {
+                    include: {
+                        subject: true
+                    }
+                }
+            }
+
+        })
+        if (!chapter) {
+            throw new Error("Chapter not found!")
+        }
+        return <EditNoteForm chapter={chapter} />
     }
     return (
         <h1>404 page not found!</h1>

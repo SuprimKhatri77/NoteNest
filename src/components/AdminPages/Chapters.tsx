@@ -25,8 +25,8 @@ export default function ChaptersPage(
                     {subjectName} - {decodeURIComponent(className)}
                 </h1>
                 <div className="mt-4 md:mt-0 text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-2">
-                    <Link href="">
-                        <span className="text-indigo-600 dark:text-indigo-400 hover:underline">← Back to Subjects</span>
+                    <Link href={`/admin/${subjectName}`}>
+                        <span className="text-indigo-600 dark:text-indigo-400 hover:underline">← Back to Classes</span>
                     </Link>
                 </div>
             </div>

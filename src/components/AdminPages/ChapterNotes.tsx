@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Note = {
     id: string
@@ -12,7 +14,7 @@ type Note = {
     chapterNumber: string | null
 }
 
-export default function ChapterNotes({ notes, className, subjectName }: { notes: Note, className: string, subjectName: string }) {
+export default function ChapterNotes({ chapter, className, subjectName, classNumber }: { chapter: Note, className: string, subjectName: string, classNumber: string }) {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [pdfError, setPdfError] = useState(false);
@@ -36,7 +38,7 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
                 }
             };
         }
-    }, [notes.notesUrl]);
+    }, [chapter.notesUrl]);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -54,8 +56,8 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
             <div className="bg-white dark:bg-gray-800 shadow-md">
                 <div className="container mx-auto px-4 py-3">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-                        <div className="flex items-center mb-3 md:mb-0">
-                            <Link href="">
+                        <div className="flex items-center gap-5 mb-3 md:mb-0">
+                            <Link href={`/admin/${subjectName}/${className}`}>
                                 <span className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline flex items-center transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -63,12 +65,18 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
                                     Back to Chapters
                                 </span>
                             </Link>
+                            <Link href={`/admin/${subjectName}/${className}/chapter-${chapter.chapterNumber}/edit/${chapter.id}`}>
+                                <span className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline flex items-center gap-2 transition-colors">
+                                    <FontAwesomeIcon icon={faPen} className='text-xs' />
+                                    Edit
+                                </span>
+                            </Link>
                         </div>
 
                         <div className="flex items-center space-x-3">
                             <a
-                                href={notes.notesUrl}
-                                download={`${subjectName}-Class${className}-${notes.title}.pdf`}
+                                href={chapter.notesUrl}
+                                download={`${subjectName}-Class${className}-${chapter.title}.pdf`}
                                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg flex items-center transition-colors shadow-sm hover:shadow-md"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -106,11 +114,11 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
                 <div className="container mx-auto px-4 py-3">
                     <div className="flex items-center">
                         <span className="bg-white text-indigo-600 rounded-full h-8 w-8 flex items-center justify-center mr-3 font-bold shadow-md">
-                            {notes.chapterNumber || '?'}
+                            {chapter.chapterNumber || '?'}
                         </span>
                         <div>
-                            <h1 className="text-lg md:text-xl font-semibold">{subjectName} - Class {className}</h1>
-                            <h2 className="text-sm md:text-base text-indigo-100">{notes.title}</h2>
+                            <h1 className="text-lg md:text-xl font-semibold">{subjectName} - Class {classNumber}</h1>
+                            <h2 className="text-sm md:text-base text-indigo-100">{chapter.title}</h2>
                         </div>
                     </div>
                 </div>
@@ -129,7 +137,7 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
 
                     <object
                         ref={objectRef}
-                        data={`${notes.notesUrl}?dl=1`}
+                        data={`${chapter.notesUrl}?dl=1`}
                         type="application/pdf"
                         className="w-full h-full"
                     >
@@ -145,7 +153,7 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
                                 </p>
                                 <div className="flex flex-col sm:flex-row justify-center gap-3">
                                     <a
-                                        href={notes.notesUrl}
+                                        href={chapter.notesUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="bg-indigo-50 text-indigo-600 hover:bg-indigo-100 border border-indigo-200 px-4 py-2 rounded-lg inline-flex items-center justify-center transition-colors"
@@ -156,8 +164,8 @@ export default function ChapterNotes({ notes, className, subjectName }: { notes:
                                         Open in Browser
                                     </a>
                                     <a
-                                        href={notes.notesUrl}
-                                        download={`${subjectName}-Class${className}-Chapter${notes.chapterNumber}.pdf`}
+                                        href={chapter.notesUrl}
+                                        download={`${subjectName}-Class${classNumber}-Chapter${chapter.chapterNumber}.pdf`}
                                         className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg inline-flex items-center justify-center transition-colors"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

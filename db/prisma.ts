@@ -74,13 +74,14 @@ export async function createNote({
 }
 
 // edit
-export async function editNote({
+export async function updateNote({
   id,
   title,
   description,
   notesUrl,
   className,
   subjectName,
+  chapterNumber,
 }: {
   id: string;
   title: string;
@@ -88,6 +89,7 @@ export async function editNote({
   notesUrl: string;
   className: string;
   subjectName: string;
+  chapterNumber: string;
 }) {
   const subjectData = await prisma.subject.findUnique({
     where: { name: subjectName },
@@ -113,7 +115,7 @@ export async function editNote({
 
   await prisma.chapter.update({
     where: { id },
-    data: { title, description, notesUrl, classId },
+    data: { title, description, notesUrl, classId, chapterNumber },
   });
 }
 
