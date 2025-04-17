@@ -22,7 +22,7 @@ export default function ChaptersPage(
         <div className="py-8 px-4">
             <div className="flex flex-col md:flex-row items-center justify-between mb-8">
                 <h1 className="text-3xl font-bold dark:text-indigo-300 text-indigo-600 capitalize">
-                    {subjectName} - {decodeURIComponent(className)}
+                    {subjectName} - {className}
                 </h1>
                 <div className="mt-4 md:mt-0 text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-2">
                     <Link href={`/admin/${subjectName}`}>

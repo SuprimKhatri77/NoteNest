@@ -85,10 +85,14 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
 
         const className = slug[1]
         const formattedClassName = decodeURIComponent(slug[1])
+        const subjectName = decodeURIComponent(slug[0].charAt(0).toUpperCase() + slug[0].slice(1))
         // console.log(formattedClassName);
         const subjectClass = await prisma.class.findFirst({
             where: {
-                name: formattedClassName
+                name: formattedClassName,
+                subject: {
+                    name: subjectName
+                }
             },
             include: {
                 chapters: true
@@ -96,7 +100,7 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
         })
 
         if (!subjectClass) {
-            throw new Error("Class not found!")
+            throw new Error(`Class named ${formattedClassName} and subject name ${subjectName} not found!`)
         }
 
         const chapters = subjectClass.chapters.map((chap) => ({
@@ -108,7 +112,7 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
 
 
 
-        return <ChaptersPage chapters={chapters} className={slug[1]} subjectName={slug[0]} />
+        return <ChaptersPage chapters={chapters} className={formattedClassName} subjectName={subjectName} />
     }
 
     if (slug.length === 3) {

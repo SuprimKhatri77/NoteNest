@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createNote, updateNote } from "../db/prisma";
+import { createNote, deleteNote, updateNote } from "../db/prisma";
 import { redirect } from "next/navigation";
 
 export type Errors = {
@@ -48,10 +48,7 @@ export default async function addNote(
     };
   }
 
-  // console.log("Validated data: ", validateFields.data) ;
   await createNote(validateFields.data);
-  // console.log("Note created");
-  //   }
   return redirect("/admin");
 }
 
@@ -86,4 +83,9 @@ export async function editNote(prevState: FormState, formData: FormData) {
 
   await updateNote({ id: chapterId, ...validateFields.data });
   return redirect("/admin");
+}
+
+// deleting a note
+export async function removeNote(id: string) {
+  await deleteNote(id);
 }
