@@ -5,13 +5,13 @@ import ChaptersPage from "@/components/AdminPages/Chapters"
 import ChapterNotes from "@/components/AdminPages/ChapterNotes"
 import EditNoteForm from "@/components/AdminPages/EditNoteForm"
 
-type PageProps = {
+type Props = {
     params: {
         slug?: string[]
     }
 }
 
-export default async function CatchAllRoutes({ params }: PageProps) {
+export default async function CatchAllRoutes({ params }: Props) {
     const slug = params.slug ?? []
 
     if (slug.length === 0) {

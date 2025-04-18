@@ -4,13 +4,13 @@ import { prisma } from "../../../../../db/prisma"
 import ChapterListingPage from "@/components/NotePages/Chapter"
 import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
-type PageProps = {
+type Props = {
     params: {
         slug?: string[]
     }
 }
 
-export default async function NotesSlugPage({ params }: PageProps) {
+export default async function NotesSlugPage({ params }: Props) {
     const slug = params.slug ?? []
 
     if (slug.length === 0) {
