@@ -25,7 +25,14 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
             }
         })
 
-        const subjectsWithCounts = subject.map((sub) => {
+        const subjectsWithCounts = subject.map((sub: {
+            id: string;
+            name: string;
+            description: string | null;
+            classes: {
+                _count: { chapters: number; examPapers: number }
+            }[]
+        }) => {
             let noteCount = 0;
             let pyqCount = 0;
 
