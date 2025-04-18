@@ -6,10 +6,13 @@ import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
 
 
-export default async function NotesSlugPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function NotesSlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
     const { slug } = await params
+    console.log("slug:", slug);
+    console.log("slug length:", slug?.length);
 
-    if (slug.length === 0) {
+    if (!slug || slug?.length === 0) {
+        console.log("Slug length is 0, fetching subject data...");
         const subject = await prisma.subject.findMany({
             include: {
                 classes: {
@@ -59,7 +62,7 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
 
 
 
-    if (slug.length === 1) {
+    if (slug?.length === 1) {
         const subject = await prisma.subject.findFirst({
             where: { name: slug[0] },
             include: {
@@ -90,7 +93,7 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
     }
 
 
-    if (slug.length === 2) {
+    if (slug?.length === 2) {
         const className = decodeURIComponent(slug[1])
         const subjectName = decodeURIComponent(slug[0])
 
@@ -126,7 +129,7 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
     }
 
 
-    if (slug.length === 3) {
+    if (slug?.length === 3) {
 
         const subjectName = decodeURIComponent(slug[0])
         const className = decodeURIComponent(slug[1])

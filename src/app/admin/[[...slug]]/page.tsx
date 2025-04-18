@@ -7,10 +7,10 @@ import EditNoteForm from "@/components/AdminPages/EditNoteForm"
 
 
 
-export default async function CatchAllRoutes({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CatchAllRoutes({ params }: { params: Promise<{ slug: string[] }> }) {
     const { slug } = await params
 
-    if (slug.length === 0) {
+    if (slug?.length === 0) {
         const subjects = await prisma.subject.findMany({
             include: {
                 classes: {
@@ -61,7 +61,7 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
     }
 
 
-    if (slug.length === 1) {
+    if (slug?.length === 1) {
         const subjectName = decodeURIComponent(slug[0])
         const subject = await prisma.subject.findFirst({
             where: {
@@ -102,7 +102,7 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
         return <SubjectClassesPage filteredClasses={filteredClasses} slugName={slug[0]} />
     }
 
-    if (slug.length === 2) {
+    if (slug?.length === 2) {
 
         const formattedClassName = decodeURIComponent(slug[1])
         const subjectName = decodeURIComponent(slug[0])
@@ -141,7 +141,7 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
         return <ChaptersPage chapters={chapters} className={formattedClassName} subjectName={subjectName} />
     }
 
-    if (slug.length === 3) {
+    if (slug?.length === 3) {
 
         const chapterName = decodeURIComponent(slug[2])
         const chapterNumber = chapterName.replace("chapter-", "")
