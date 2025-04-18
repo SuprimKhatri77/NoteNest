@@ -49,11 +49,10 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
 
     if (slug.length === 1) {
         const subjectName = decodeURIComponent(slug[0])
-        const formattedSubjectName = subjectName.charAt(0).toUpperCase() + subjectName.slice(1)
         const subject = await prisma.subject.findFirst({
             where: {
                 name: {
-                    equals: formattedSubjectName,
+                    equals: subjectName,
                 }
             },
             include: {
@@ -75,17 +74,15 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
         const filteredClasses = subject.classes.map((cls) => ({
             id: cls.id,
             name: cls.name,
-            // noteCount: cls._count.chapters,
-            // pyqCount: cls._count.examPapers,
+
         }));
         return <SubjectClassesPage filteredClasses={filteredClasses} slugName={slug[0]} />
     }
 
     if (slug.length === 2) {
 
-        const className = slug[1]
         const formattedClassName = decodeURIComponent(slug[1])
-        const subjectName = decodeURIComponent(slug[0].charAt(0).toUpperCase() + slug[0].slice(1))
+        const subjectName = decodeURIComponent(slug[0])
         // console.log(formattedClassName);
         const subjectClass = await prisma.class.findFirst({
             where: {
