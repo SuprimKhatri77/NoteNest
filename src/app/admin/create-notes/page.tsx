@@ -29,6 +29,9 @@ export default function AddNote() {
                             placeholder="eg: Thermodynamics"
                             className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                         />
+                        {state.errors?.title && (
+                            <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.title}</p>
+                        )}
                     </div>
 
                     <div className="relative">
@@ -41,6 +44,9 @@ export default function AddNote() {
                             className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                             rows={3}
                         />
+                        {state.errors?.description && (
+                            <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.description}</p>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -54,6 +60,9 @@ export default function AddNote() {
                                 placeholder="eg: Class 12"
                                 className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                             />
+                            {state.errors?.className && (
+                                <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.className}</p>
+                            )}
                         </div>
 
                         <div className="relative">
@@ -66,6 +75,9 @@ export default function AddNote() {
                                 placeholder="eg: Physics"
                                 className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                             />
+                            {state.errors?.subjectName && (
+                                <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.subjectName}</p>
+                            )}
                         </div>
                         <div className="relative">
                             <label className="text-gray-700 dark:text-gray-200 text-sm font-semibold">
@@ -77,6 +89,9 @@ export default function AddNote() {
                                 placeholder="eg: 1"
                                 className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white text-sm transition-all duration-200"
                             />
+                            {state.errors?.chapterNumber && (
+                                <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.chapterNumber}</p>
+                            )}
                         </div>
                     </div>
 
@@ -161,6 +176,9 @@ export default function AddNote() {
 
                         </div>
                     </div>
+                    {state.errors?.notesUrl && (
+                        <p className="text-red-500 dark:text-red-400 text-sm mt-1">{state.errors.notesUrl}</p>
+                    )}
                 </div>
 
                 <div className="mt-8">

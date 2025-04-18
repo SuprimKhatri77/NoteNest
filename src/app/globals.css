@@ -131,3 +131,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@media (max-width: 370px) {
+  .xs {
+    margin-right: 7px;
+  }
+}

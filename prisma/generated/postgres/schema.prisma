@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/postgres"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Subject {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  description String?
+  classes     Class[]
+}
+
+model Class {
+  id         String      @id @default(cuid())
+  name       String
+  subject    Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  subjectId  String
+  chapters   Chapter[]
+  examPapers ExamPaper[]
+
+  @@unique([name, subjectId])
+}
+
+model Chapter {
+  id            String  @id @default(cuid())
+  title         String
+  description   String?
+  notesUrl      String
+  chapterNumber String?
+  class         Class   @relation(fields: [classId], references: [id])
+  classId       String
+
+  @@unique([title, classId])
+}
+
+model ExamPaper {
+  id       String @id @default(cuid())
+  type     String
+  year     Int
+  paperUrl String
+  class    Class  @relation(fields: [classId], references: [id])
+  classId  String
+
+  @@unique([classId, type])
+}

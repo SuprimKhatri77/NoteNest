@@ -46,16 +46,16 @@ export default function ChapterListingPage({
 
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-3xl font-bold text-indigo-900 dark:text-white mb-2 capitalize">
+                        <h1 className="sm:text-3xl font-bold text-indigo-900 dark:text-white mb-2 capitalize">
                             {subjectName}: {className}
                         </h1>
-                        <p className="text-indigo-700 dark:text-indigo-200">
+                        <p className="text-indigo-700 text-xs sm:text-base dark:text-indigo-200">
                             Explore all chapters and their study materials
                         </p>
                     </div>
-                    <div className="flex items-center bg-indigo-100 dark:bg-indigo-900/50 rounded-full px-4 py-2 shadow-sm">
-                        <BookOpen className="h-5 w-5 text-indigo-600 dark:text-indigo-300 mr-2" />
-                        <span className="text-indigo-700 dark:text-indigo-100">{chapters.length} Chapters</span>
+                    <div className="flex items-center bg-indigo-100 dark:bg-indigo-900/50 rounded-full px-3 py-2 sm:px-4 sm:py-2 shadow-sm">
+                        <BookOpen className="h-4 w-4  sm:h-5 sm:w-5 text-indigo-600 dark:text-indigo-300 mr-2" />
+                        <span className="text-indigo-700 text-nowrap dark:text-indigo-100">{chapters.length} Chapters</span>
                     </div>
                 </div>
             </div>

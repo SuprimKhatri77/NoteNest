@@ -83,7 +83,6 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
 
         const formattedClassName = decodeURIComponent(slug[1])
         const subjectName = decodeURIComponent(slug[0])
-        // console.log(formattedClassName);
         const subjectClass = await prisma.class.findFirst({
             where: {
                 name: formattedClassName,
@@ -126,7 +125,6 @@ export default async function CatchAllRoutes({ params }: { params: { slug?: stri
             throw new Error("Chapter not found!")
         }
 
-        // const notes = chapter
         const className = decodeURIComponent(slug[1])
         const classNumber = className.replace("class", "")
 

@@ -25,14 +25,14 @@ export default function SubjectClassesPage({ subjectClass, subjectName }: { subj
 
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-3xl font-bold text-indigo-900 dark:text-white mb-2">{subjectName}</h1>
+                        <h1 className="text-lg sm:text-3xl font-bold text-indigo-900 dark:text-white mb-2 capitalize">{subjectName}</h1>
                         {subjectClass[0]?.subject.description && (
-                            <p className="text-indigo-700 dark:text-indigo-200 max-w-2xl">{subjectClass[0]?.subject.description}</p>
+                            <p className="text-indigo-700 text-xs sm:text-base dark:text-indigo-200 max-w-2xl">{subjectClass[0]?.subject.description}</p>
                         )}
                     </div>
                     <div className="flex items-center bg-indigo-100 dark:bg-indigo-900/50 rounded-full px-4 py-2 shadow-sm">
-                        <GraduationCap className="h-5 w-5 text-indigo-600 dark:text-indigo-300 mr-2" />
-                        <span className="text-indigo-700 dark:text-indigo-100">{subjectClass.length} Classes</span>
+                        <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-600 dark:text-indigo-300 mr-2" />
+                        <span className="text-sm text-indigo-700 text-nowrap sm:text-base dark:text-indigo-100">{subjectClass.length} Classes</span>
                     </div>
                 </div>
             </div>

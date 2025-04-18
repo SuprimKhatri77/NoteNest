@@ -62,22 +62,7 @@ export default function Navbar() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4" />
                         </button>
                     </div>
-                    {/* <SignedOut>
-                        <SignUpButton mode="modal">
-                            <button className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
-                                Sign up
-                            </button>
-                        </SignUpButton>
-                        <SignInButton mode="modal">
-                            <button className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
-                                Login
-                            </button>
-                        </SignInButton>
-                    </SignedOut>
 
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn> */}
                     <ClerkLoading>
                         <div
                             className="inline-block border-indigo-600 h-8 w-8 animate-spin rounded-full border-4 border-solid  border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] 
@@ -112,7 +97,7 @@ export default function Navbar() {
             {/* mobile nav */}
             <div>
                 <nav className="md:hidden flex justify-between items-center  py-2 px-1">
-                    <Link href="/" className="text-xl font-bold text-indigo-600">
+                    <Link href="/" className="text-xl font-bold text-indigo-600 xs">
                         NoteNest
                     </Link>
                     <div className="flex gap-2 items-center">

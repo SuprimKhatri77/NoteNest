@@ -47,7 +47,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
             if (e.key === 'Escape' && isFullscreen) {
                 setIsFullscreen(false);
             }
-            // Add keyboard shortcuts for zoom
             if (e.ctrlKey && e.key === '=') {
                 e.preventDefault();
                 setScale(prev => Math.min(prev + 0.1, 2));
@@ -62,7 +61,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isFullscreen]);
 
-    // Auto-hide controls in fullscreen after inactivity
     useEffect(() => {
         if (isFullscreen) {
             const handleMouseMove = () => {
@@ -91,12 +89,10 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
 
     return (
         <div className="flex flex-col min-h-screen w-full bg-gray-50 dark:bg-gray-900">
-            {/* Header - Non-fullscreen mode */}
             {!isFullscreen && (
                 <>
                     <div className="bg-white dark:bg-gray-800 shadow-md">
                         <div className="container mx-auto px-4 py-3">
-                            {/* Header buttons - small screen */}
                             <div className="flex flex-wrap items-center justify-between gap-2">
                                 <Link href={`/notes/${subjectName}/${className}`}
                                     className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 
@@ -152,10 +148,8 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                 </>
             )}
 
-            {/* PDF Viewer - This is the key part for width issues */}
             <div className={`flex-grow p-2 md:p-4 ${isFullscreen ? 'fixed inset-0 z-50 bg-white dark:bg-gray-900' : ''}`}>
                 <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg ${isFullscreen ? 'h-full' : 'h-[calc(100vh-200px)]'} relative w-full`}>
-                    {/* Loading State */}
                     {isLoading && (
                         <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 z-10">
                             <div className="flex flex-col items-center">
@@ -165,9 +159,7 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                         </div>
                     )}
 
-                    {/* PDF Object - Fixed for full width */}
                     <div className="w-full h-full overflow-auto">
-                        {/* Important: This wrapper div with width 100% is key */}
                         <div style={{ width: '100%', height: '100%' }}>
                             <object
                                 ref={objectRef}
@@ -180,7 +172,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                                     transformOrigin: 'top center'
                                 }}
                             >
-                                {/* PDF Fallback */}
                                 <div className="flex items-center justify-center h-full text-center p-4">
                                     <div>
                                         <div className="mb-4 text-indigo-600 dark:text-indigo-400">
@@ -220,7 +211,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                         </div>
                     </div>
 
-                    {/* Zoom Controls */}
                     <div
                         className={`absolute bottom-4 right-4 z-10 flex items-center bg-gray-100 dark:bg-gray-800 rounded-full shadow-lg p-1 transition-opacity duration-300 ${isFullscreen && !showControls ? 'opacity-0' : 'opacity-100'}`}
                     >
@@ -252,7 +242,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                 </div>
             </div>
 
-            {/* Fullscreen Controls */}
             {isFullscreen && (
                 <>
                     <div
@@ -291,7 +280,6 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
                         </div>
                     </div>
 
-                    {/* Search Panel - Togglable */}
                     <div
                         className={`fixed top-20 right-4 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}
                     >
