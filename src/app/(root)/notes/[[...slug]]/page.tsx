@@ -4,8 +4,14 @@ import { prisma } from "../../../../../db/prisma"
 import ChapterListingPage from "@/components/NotePages/Chapter"
 import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
-export default async function ({ params }: { params: { slug: string[] } }) {
-    const slug = params.slug || []
+type PageProps = {
+    params: {
+        slug?: string[]
+    }
+}
+
+export default async function ({ params }: PageProps) {
+    const slug = params.slug ?? []
 
     if (slug.length === 0) {
         const subject = await prisma.subject.findMany({
