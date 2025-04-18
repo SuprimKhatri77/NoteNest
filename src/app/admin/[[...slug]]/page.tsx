@@ -26,11 +26,23 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
             },
         });
 
-        const subjectsWithCounts = subjects.map((subject) => {
+        const subjectsWithCounts = subjects.map((subject: {
+            id: string;
+            name: string;
+            description: string | null;
+            classes: {
+                _count: { chapters: number; examPapers: number }
+            }[]
+        }) => {
             let noteCount = 0;
             let pyqCount = 0;
 
-            subject.classes.forEach((cls) => {
+            subject.classes.forEach((cls: {
+                _count: {
+                    chapters: number;
+                    examPapers: number;
+                }
+            }) => {
                 noteCount += cls._count.chapters;
                 pyqCount += cls._count.examPapers;
             });
@@ -73,7 +85,16 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
         if (!subject) {
             throw new Error("Subjects not found")
         }
-        const filteredClasses = subject.classes.map((cls) => ({
+        const filteredClasses = subject.classes.map((cls: {
+            _count: {
+                chapters: number;
+                examPapers: number;
+            };
+        } & {
+            name: string;
+            id: string;
+            subjectId: string;
+        }) => ({
             id: cls.id,
             name: cls.name,
 
@@ -101,7 +122,14 @@ export default async function CatchAllRoutes({ params }: { params: Promise<{ slu
             throw new Error(`Class named ${formattedClassName} and subject name ${subjectName} not found!`)
         }
 
-        const chapters = subjectClass.chapters.map((chap) => ({
+        const chapters = subjectClass.chapters.map((chap: {
+            id: string;
+            description: string | null;
+            title: string;
+            notesUrl: string;
+            chapterNumber: string | null;
+            classId: string;
+        }) => ({
             id: chap.id,
             description: chap.description ?? "",
             title: chap.title,

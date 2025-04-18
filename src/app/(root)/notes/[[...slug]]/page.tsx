@@ -36,7 +36,9 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
             let noteCount = 0;
             let pyqCount = 0;
 
-            sub.classes.forEach((cls) => {
+            sub.classes.forEach((cls: {
+                _count: { chapters: number; examPapers: number }
+            }) => {
                 noteCount += cls._count.chapters
                 pyqCount += cls._count.examPapers
             })
@@ -69,7 +71,11 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
             throw new Error(`Subject of name ${slug[0]} not found!`)
         }
 
-        const subjectClass = subject.classes.map((cls) => ({
+        const subjectClass = subject.classes.map((cls: {
+            id: string;
+            name: string;
+            subjectId: string;
+        }) => ({
             id: cls.id,
             name: cls.name,
             subject: {

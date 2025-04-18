@@ -248,7 +248,7 @@ export async function editExamPaper({
 
 // delete
 export async function deleteExamPaper(id: string) {
-  await prisma.chapter.delete({
+  await prisma.examPaper.delete({
     where: { id },
   });
 }
