@@ -10,7 +10,7 @@ type PageProps = {
     }
 }
 
-export default async function ({ params }: PageProps) {
+export default async function NotesSlugPage({ params }: PageProps) {
     const slug = params.slug ?? []
 
     if (slug.length === 0) {
