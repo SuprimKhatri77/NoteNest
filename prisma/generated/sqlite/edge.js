@@ -161,7 +161,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
@@ -175,13 +175,13 @@ const config = {
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": null,
-        "value": "file:app.db"
+        "fromEnvVar": "SQLITE_URL",
+        "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/sqlite\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:app.db\"\n}\n\nmodel Subject {\n  id          String  @id @default(cuid())\n  name        String  @unique\n  description String?\n  classes     Class[]\n}\n\nmodel Class {\n  id         String      @id @default(cuid())\n  name       String\n  subject    Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)\n  subjectId  String\n  chapters   Chapter[]\n  examPapers ExamPaper[]\n\n  @@unique([name, subjectId])\n}\n\nmodel Chapter {\n  id            String  @id @default(cuid())\n  title         String\n  description   String?\n  notesUrl      String\n  chapterNumber String?\n  class         Class   @relation(fields: [classId], references: [id])\n  classId       String\n\n  @@unique([title, classId])\n}\n\nmodel ExamPaper {\n  id       String @id @default(cuid())\n  type     String\n  year     Int\n  paperUrl String\n  class    Class  @relation(fields: [classId], references: [id])\n  classId  String\n\n  @@unique([classId, type])\n}\n",
-  "inlineSchemaHash": "3dc5c5014f754c788ba6487d76d20ca76cf2cfdb62d6acc6f72b2a0f3bfc07ae",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/sqlite\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"SQLITE_URL\")\n}\n\nmodel Subject {\n  id          String  @id @default(cuid())\n  name        String  @unique\n  description String?\n  classes     Class[]\n}\n\nmodel Class {\n  id         String      @id @default(cuid())\n  name       String\n  subject    Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)\n  subjectId  String\n  chapters   Chapter[]\n  examPapers ExamPaper[]\n\n  @@unique([name, subjectId])\n}\n\nmodel Chapter {\n  id            String  @id @default(cuid())\n  title         String\n  description   String?\n  notesUrl      String\n  chapterNumber String?\n  class         Class   @relation(fields: [classId], references: [id])\n  classId       String\n\n  @@unique([title, classId])\n}\n\nmodel ExamPaper {\n  id       String @id @default(cuid())\n  type     String\n  year     Int\n  paperUrl String\n  class    Class  @relation(fields: [classId], references: [id])\n  classId  String\n\n  @@unique([classId, type])\n}\n",
+  "inlineSchemaHash": "5f6f2a8fad83f8912b48e8659cbb39d38ab9c4e9f3b1a7b2124c24f109fd122a",
   "copyEngine": true
 }
 config.dirname = '/'
@@ -192,7 +192,9 @@ config.engineWasm = undefined
 config.compilerWasm = undefined
 
 config.injectableEdgeEnv = () => ({
-  parsed: {}
+  parsed: {
+    SQLITE_URL: typeof globalThis !== 'undefined' && globalThis['SQLITE_URL'] || typeof process !== 'undefined' && process.env && process.env.SQLITE_URL || undefined
+  }
 })
 
 if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
