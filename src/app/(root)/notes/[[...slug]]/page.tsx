@@ -4,14 +4,10 @@ import { prisma } from "../../../../../db/prisma"
 import ChapterListingPage from "@/components/NotePages/Chapter"
 import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
-type Props = {
-    params: {
-        slug?: string[]
-    }
-}
 
-export default async function NotesSlugPage({ params }: Props) {
-    const slug = params.slug ?? []
+
+export default async function NotesSlugPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
 
     if (slug.length === 0) {
         const subject = await prisma.subject.findMany({

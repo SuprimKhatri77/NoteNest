@@ -5,14 +5,10 @@ import ChaptersPage from "@/components/AdminPages/Chapters"
 import ChapterNotes from "@/components/AdminPages/ChapterNotes"
 import EditNoteForm from "@/components/AdminPages/EditNoteForm"
 
-type Props = {
-    params: {
-        slug?: string[]
-    }
-}
 
-export default async function CatchAllRoutes({ params }: Props) {
-    const slug = params.slug ?? []
+
+export default async function CatchAllRoutes({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
 
     if (slug.length === 0) {
         const subjects = await prisma.subject.findMany({
