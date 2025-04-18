@@ -10,7 +10,7 @@ import EditNoteForm from "@/components/AdminPages/EditNoteForm"
 export default async function CatchAllRoutes({ params }: { params: Promise<{ slug: string[] }> }) {
     const { slug } = await params
 
-    if (slug?.length === 0) {
+    if (!slug || slug?.length === 0) {
         const subjects = await prisma.subject.findMany({
             include: {
                 classes: {
