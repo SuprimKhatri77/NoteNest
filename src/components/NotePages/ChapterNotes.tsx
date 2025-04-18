@@ -24,20 +24,20 @@ export default function ChapterNotesPage({ chapter, subjectName, className }: { 
 
     useEffect(() => {
         if (objectRef.current) {
+            const currentRef = objectRef.current;
+
             const handleLoad = () => setIsLoading(false);
             const handleError = () => {
                 setIsLoading(false);
                 setPdfError(true);
             };
 
-            objectRef.current.addEventListener('load', handleLoad);
-            objectRef.current.addEventListener('error', handleError);
+            currentRef.addEventListener('load', handleLoad);
+            currentRef.addEventListener('error', handleError);
 
             return () => {
-                if (objectRef.current) {
-                    objectRef.current.removeEventListener('load', handleLoad);
-                    objectRef.current.removeEventListener('error', handleError);
-                }
+                currentRef.removeEventListener('load', handleLoad);
+                currentRef.removeEventListener('error', handleError);
             };
         }
     }, [chapter.notesUrl]);

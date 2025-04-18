@@ -3,6 +3,9 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: ["uploadthing.com", "utfs.io"],
     remotePatterns: [

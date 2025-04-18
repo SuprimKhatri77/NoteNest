@@ -3,6 +3,7 @@ import { useActionState, useState } from 'react';
 import { CldUploadWidget } from 'next-cloudinary';
 import addNote from '../../../../actions/note';
 import { FormState } from '../../../../actions/note';
+import Image from 'next/image';
 
 export default function AddNote() {
     const [uploadedUrl, setUploadedUrl] = useState<string>('');
@@ -136,7 +137,7 @@ export default function AddNote() {
                                 <div className="mt-3 flex items-center p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg border border-indigo-100 dark:border-indigo-800 shadow-sm">
                                     {uploadedUrl.match(/\.(jpeg|jpg|gif|png)$/) !== null ? (
                                         <div className="w-16 h-16 mr-3 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 flex-shrink-0">
-                                            <img
+                                            <Image fill
                                                 src={uploadedUrl}
                                                 alt="Preview"
                                                 className="w-full h-full object-cover"
