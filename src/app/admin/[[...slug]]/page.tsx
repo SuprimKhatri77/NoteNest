@@ -1,6 +1,6 @@
 import SubjectClassesPage from "@/components/AdminPages/SubjectClasses"
 import AdminPage from "@/components/AdminPages/AdminPage"
-import { prisma } from "../../../../db/prisma"
+import prisma from "../../../../db/prisma"
 import ChaptersPage from "@/components/AdminPages/Chapters"
 import ChapterNotes from "@/components/AdminPages/ChapterNotes"
 import EditNoteForm from "@/components/AdminPages/EditNoteForm"

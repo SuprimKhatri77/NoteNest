@@ -165,7 +165,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/suprim77/Desktop/notenest/prisma/schema.postgres.prisma",
+    "sourceFilePath": "/home/suprim77/Desktop/notenest/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -187,8 +187,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/postgres\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Subject {\n  id          String  @id @default(cuid())\n  name        String  @unique\n  description String?\n  classes     Class[]\n}\n\nmodel Class {\n  id         String      @id @default(cuid())\n  name       String\n  subject    Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)\n  subjectId  String\n  chapters   Chapter[]\n  examPapers ExamPaper[]\n\n  @@unique([name, subjectId])\n}\n\nmodel Chapter {\n  id            String  @id @default(cuid())\n  title         String\n  description   String?\n  notesUrl      String\n  chapterNumber String?\n  class         Class   @relation(fields: [classId], references: [id])\n  classId       String\n\n  @@unique([title, classId])\n}\n\nmodel ExamPaper {\n  id       String @id @default(cuid())\n  type     String\n  year     Int\n  paperUrl String\n  class    Class  @relation(fields: [classId], references: [id])\n  classId  String\n\n  @@unique([classId, type])\n}\n",
-  "inlineSchemaHash": "3e62ebe16dbeeed0b7df3ac63689d9d5a04858d9a9224657b87886024bcc6674",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/postgres\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Subject {\n  id          String  @id @default(cuid())\n  name        String  @unique\n  description String?\n  classes     Class[]\n}\n\nmodel Class {\n  id         String      @id @default(cuid())\n  name       String\n  subject    Subject     @relation(fields: [subjectId], references: [id], onDelete: Cascade)\n  subjectId  String\n  chapters   Chapter[]\n  examPapers ExamPaper[]\n\n  @@unique([name, subjectId])\n}\n\nmodel Chapter {\n  id            String  @id @default(cuid())\n  title         String\n  description   String?\n  notesUrl      String\n  chapterNumber String?\n  class         Class   @relation(fields: [classId], references: [id])\n  classId       String\n\n  @@unique([title, classId])\n}\n\nmodel ExamPaper {\n  id       String @id @default(cuid())\n  type     String\n  year     Int\n  paperUrl String\n  class    Class  @relation(fields: [classId], references: [id])\n  classId  String\n\n  @@unique([classId, type])\n}\n",
+  "inlineSchemaHash": "eaa69859e8546890b39f98b136578249d4d78aa968f082787d82501f5440b1ef",
   "copyEngine": true
 }
 config.dirname = '/'

@@ -1,6 +1,6 @@
 import SubjectClassesPage from "@/components/NotePages/SubjectClassesPage"
 import NotesPage from "@/components/NotePages/NotesPage"
-import { prisma } from "../../../../../db/prisma"
+import prisma from "../../../../../db/prisma"
 import ChapterListingPage from "@/components/NotePages/Chapter"
 import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
@@ -8,11 +8,8 @@ import ChapterNotesPage from "@/components/NotePages/ChapterNotes"
 
 export default async function NotesSlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
     const { slug } = await params
-    console.log("slug:", slug);
-    console.log("slug length:", slug?.length);
 
     if (!slug || slug?.length === 0) {
-        console.log("Slug length is 0, fetching subject data...");
         const subject = await prisma.subject.findMany({
             include: {
                 classes: {
