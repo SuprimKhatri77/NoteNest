@@ -60,8 +60,9 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
 
 
     if (slug?.length === 1) {
+        const subjectName = decodeURIComponent(slug[0])
         const subject = await prisma.subject.findFirst({
-            where: { name: slug[0] },
+            where: { name: subjectName },
             include: {
                 classes: true
             }
@@ -86,7 +87,7 @@ export default async function NotesSlugPage({ params }: { params: Promise<{ slug
         }))
 
 
-        return <SubjectClassesPage subjectClass={subjectClass} subjectName={slug[0]} />
+        return <SubjectClassesPage subjectClass={subjectClass} subjectName={subjectName} />
     }
 
 

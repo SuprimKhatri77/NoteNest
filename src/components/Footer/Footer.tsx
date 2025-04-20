@@ -82,7 +82,7 @@ function Footer() {
         </div>
 
         <div className="text-center pt-8 border-t border-white border-opacity-10 text-gray-300 text-base">
-          <p>&copy; 2025 StudyNotes. All rights reserved.</p>
+          <p>&copy; 2025 NoteNest. All rights reserved.</p>
         </div>
       </footer>
     </>

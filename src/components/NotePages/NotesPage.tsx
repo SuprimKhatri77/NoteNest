@@ -49,7 +49,7 @@ export default function NotesPage({ subjects }: { subjects: Subject[] }) {
                     {filteredSubjects.map((subject) => (
                         <Link href={`/notes/${subject.name}`} key={subject.id}>
                             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-200 dark:border-gray-700 cursor-pointer h-full flex flex-col">
-                                <h2 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{subject.name}</h2>
+                                <h2 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2 capitalize">{subject.name}</h2>
                                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">{subject.description}</p>
 
                                 <div className="mt-auto">
