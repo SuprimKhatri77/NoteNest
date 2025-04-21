@@ -206,7 +206,7 @@ export async function createExamPaper({
 }
 
 // edit
-export async function editExamPaper({
+export async function updateExamPaper({
   id,
   type,
   year,

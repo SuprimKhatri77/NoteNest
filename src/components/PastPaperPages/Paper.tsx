@@ -2,11 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeNote } from '../../../../actions/note';
-import { useRouter } from 'next/navigation';
-import { removeExamPaper } from '../../../../actions/examPaper';
+
 
 
 type Paper = {
@@ -30,7 +26,6 @@ type Paper = {
 
 export default function PaperPage({ examPaper, subjectName, className }: { examPaper: Paper, subjectName: string, className: string }) {
 
-    const router = useRouter();
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [pdfError, setPdfError] = useState(false);
@@ -68,47 +63,9 @@ export default function PaperPage({ examPaper, subjectName, className }: { examP
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isFullscreen]);
-
-    const handleDelete = async () => {
-        await removeExamPaper(examPaper.id)
-        setShowDeleteModal(false);
-        setDeleteSuccess(true);
-
-        setTimeout(() => {
-            router.push(`/admin/past-papers`);
-        }, 1500);
-    };
-
     return (
         <div className="flex flex-col min-h-screen w-full">
-            {deleteSuccess && (
-                <div className="fixed top-4 right-4 z-50 bg-green-500 text-white p-4 rounded-md shadow-lg">
-                    Exam Paper deleted successfully! Redirecting...
-                </div>
-            )}
 
-            {showDeleteModal && (
-                <div className="fixed inset-0 bg-[rgb(0,0,0,0.7)] flex items-center justify-center z-50">
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md">
-                        <h3 className="text-lg font-medium mb-4">Confirm Delete</h3>
-                        <p className="mb-6">Are you sure you want to delete "{examPaper.type}"?</p>
-                        <div className="flex justify-end gap-3">
-                            <button
-                                onClick={() => setShowDeleteModal(false)}
-                                className="px-4 py-2 bg-gray-200 dark:bg-gray-500 dark:hover:bg-gray-600 rounded-md hover:bg-gray-300 transition-colors cursor-pointer"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleDelete}
-                                className="px-4  py-2 cursor-pointer bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
 
             <div className="bg-white dark:bg-gray-800 shadow-md">
                 <div className="container mx-auto px-4 py-3">
@@ -122,23 +79,7 @@ export default function PaperPage({ examPaper, subjectName, className }: { examP
                                     Back to PapersList
                                 </span>
                             </Link>
-                            <Link href={`/admin/past-papers/${subjectName}/${className}/${examPaper.id}/edit/${examPaper.id}`}>
-                                <span className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline flex items-center gap-2 transition-colors">
-                                    <FontAwesomeIcon icon={faPen} className='text-xs' />
-                                    <span className='pt-1'>
-                                        Edit
-                                    </span>
-                                </span>
-                            </Link>
 
-                            <button onClick={() => setShowDeleteModal(true)}>
-                                <span className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline flex items-center gap-2 transition-colors">
-                                    <FontAwesomeIcon icon={faTrash} className='text-xs' />
-                                    <span className='pt-1'>
-                                        Delete
-                                    </span>
-                                </span>
-                            </button>
                         </div>
 
                         <div className="flex items-center space-x-3">

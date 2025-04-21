@@ -1,22 +1,23 @@
-import ExamPaperDashbaord from "@/components/AdminPages/ExamPages/PaperDashboard"
-import prisma from "../../../../../db/prisma"
-import SubjectClassListPage from "@/components/AdminPages/ExamPages/SubjectClass"
-import PaperListingPage from "@/components/AdminPages/ExamPages/PapersListing"
-import PaperPage from "@/components/AdminPages/ExamPages/Paper"
-import EditExamPaperForm from "@/components/AdminPages/ExamPages/EditPaperForm"
+import PastPapersPage from "@/components/PastPaperPages/PastPaperPage";
+import prisma from "../../../../../db/prisma";
+import SubjectClassListPage from "@/components/PastPaperPages/SubjectClass";
+import PaperListingPage from "@/components/PastPaperPages/PaperLisitng";
+import PaperPage from "@/components/PastPaperPages/Paper";
 
-export default async function ExamSlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
-    const { slug } = (await params)
+export default async function PastPaperSlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
+    const { slug } = (await params);
 
     if (!slug || slug.length === 0) {
         const subjects = await prisma.subject.findMany()
-        return <ExamPaperDashbaord subjects={subjects} />
+        return <PastPapersPage subjects={subjects} />
     }
 
     if (slug.length === 1) {
         const subjectName = decodeURIComponent(slug[0])
         const subject = await prisma.subject.findFirst({
-            where: { name: subjectName },
+            where: {
+                name: subjectName
+            },
             include: {
                 classes: {
                     include: {
@@ -31,17 +32,18 @@ export default async function ExamSlugPage({ params }: { params: Promise<{ slug:
         })
 
         if (!subject) {
-            throw new Error(`Subject of name ${subjectName} not found!`)
+            throw new Error(`Subject of name ${subjectName} not found!`);
         }
 
-
         const subjectClass = subject.classes.map((cls: {
+            _count: {
+                examPapers: number;
+            };
+        } & {
             id: string;
             name: string;
             subjectId: string;
-            _count: { examPapers: number };
         }) => {
-
             return {
                 id: cls.id,
                 name: cls.name,
@@ -53,15 +55,12 @@ export default async function ExamSlugPage({ params }: { params: Promise<{ slug:
                 }
             }
         });
-
-
         return <SubjectClassListPage subjectClass={subjectClass} subjectName={subjectName} />
     }
 
     if (slug.length === 2) {
-        const subjectName = decodeURIComponent(slug[0])
-        const className = decodeURIComponent(slug[1])
-
+        const subjectName = decodeURIComponent(slug[0]);
+        const className = decodeURIComponent(slug[1]);
         const examPapers = await prisma.examPaper.findMany({
             where: {
                 class: {
@@ -79,12 +78,12 @@ export default async function ExamSlugPage({ params }: { params: Promise<{ slug:
                 }
             }
         })
+
         if (!examPapers) {
-            throw new Error(`Paper not found for subject name ${subjectName} and ${className}`)
+            throw new Error(`Exam Papers not found for the subject of name ${subjectName} and ${className}`);
         }
 
-
-        return <PaperListingPage examPapers={examPapers} subjectName={subjectName} className={className} />
+        return <PaperListingPage examPapers={examPapers} className={className} subjectName={subjectName} />
     }
 
     if (slug.length === 3) {
@@ -117,29 +116,7 @@ export default async function ExamSlugPage({ params }: { params: Promise<{ slug:
         return <PaperPage examPaper={examPaper} subjectName={subjectName} className={className} />
     }
 
-    if (slug[3] === "edit" && slug.length === 5) {
-        const subjectName = decodeURIComponent(slug[0]);
-        const className = decodeURIComponent(slug[1]);
-        const paperId = decodeURIComponent(slug[2]);
-
-        const paperWithId = await prisma.examPaper.findUnique({
-            where: {
-                id: paperId,
-                class: {
-                    name: className,
-                    subject: {
-                        name: subjectName,
-                    }
-                }
-            },
-        })
-
-        if (!paperWithId) {
-            throw new Error("Paper doesn't have a valid id!")
-        }
-        return <EditExamPaperForm examPaper={paperWithId} className={className} subjectName={subjectName} />
-    }
     return (
-        <h1>Exam pages not found</h1>
+        <h1>Failed to load the page!</h1>
     )
 }
