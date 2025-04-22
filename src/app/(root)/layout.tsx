@@ -40,7 +40,9 @@ export default function RootLayout({
           >
 
             <Navbar />
-            {children}
+            <div className="max-w-[1400px] mx-auto w-full">
+              {children}
+            </div>
             <Footer />
           </ThemeProvider>
         </body>

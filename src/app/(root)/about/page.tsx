@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-gray-50 xl:bg-white dark:bg-gray-900 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4">
-            About StudyNotes
+            About NoteNest
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300">
             Your ultimate resource for academic excellence
@@ -85,7 +85,7 @@ export default function AboutPage() {
           <p className="text-gray-700 dark:text-gray-200">
             Today, we&apos;re proud to offer a growing library of resources contributed by both students and educators,
             all vetted for accuracy and educational value. Our community-driven approach ensures that our content
-            remains relevant, up-to-date, and aligned with current curricula.
+            remains relevant, up-to-date, and aligned with current curriculam.
           </p>
         </div>
 

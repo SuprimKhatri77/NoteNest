@@ -63,8 +63,8 @@ export default function Navbar() {
     }
 
     return (
-        <header className={`sticky bg-white dark:bg-black top-0 shadow-md md:h-18 md:flex md:flex-col md:justify-center min-w-screen z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
-            <nav className="hidden justify-between items-center py-2 px-7 md:flex z-20">
+        <header className={`sticky bg-white dark:bg-black top-0 shadow-md md:h-18 md:flex md:flex-col md:justify-center min-w-full z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
+            <nav className="hidden max-w-[1400px] mx-auto w-full justify-between items-center py-2 px-2 xl:px-7 lg:flex z-20">
                 <Link href="/" className="text-3xl text-indigo-600 font-extrabold">
                     NoteNest
                 </Link>
@@ -80,12 +80,6 @@ export default function Navbar() {
                         className={`${checkActiveLink("/past-papers")}  dark:text-gray-200`}
                     >
                         Past Papers
-                    </Link>
-                    <Link
-                        href="/resources"
-                        className={`${checkActiveLink("/resources")}  dark:text-gray-200`}
-                    >
-                        Resources
                     </Link>
                     <Link href="/about" className={`${checkActiveLink("/about")}dark:text-gray-200`}>
                         About
@@ -136,14 +130,14 @@ export default function Navbar() {
 
             {/* mobile nav */}
             <div>
-                <nav className={`md:hidden flex justify-between items-center py-3 px-4 transition-all duration-300 ${isScrolled ? 'py-2' : ''}`}>
+                <nav className={`lg:hidden flex justify-between items-center py-3 px-2 transition-all duration-300 ${isScrolled ? 'py-2' : ''}`}>
                     <Link href="/" className="text-xl font-bold text-indigo-600 flex items-center gap-1 transition-transform hover:scale-105">
-                        <span className="bg-indigo-600 text-white rounded p-1 hidden sm:inline">
-                            <FontAwesomeIcon icon={faNoteSticky} className="w-3 h-3" />
-                        </span>
+                        {/* <span className="bg-indigo-600 text-white rounded p-1 hidden sm:inline">
+                            <FontAwesomeIcon icon={faBook} className="w-3 h-3" />
+                        </span> */}
                         NoteNest
                     </Link>
-                    <div className="flex gap-3 items-center">
+                    <div className="flex gap-1 items-center ml-1">
                         <div className="flex items-center w-full max-w-[180px] rounded-md overflow-hidden border border-gray-300 dark:border-gray-500 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-300 dark:focus-within:ring-indigo-600 transition-all duration-200">
                             <input
                                 type="text"
@@ -160,7 +154,7 @@ export default function Navbar() {
                         <button
                             onClick={() => setIsActive(true)}
                             aria-label="Open menu"
-                            className="relative p-2 text-indigo-600 dark:text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-gray-800 transition-all duration-200"
+                            className="relative p-2 text-indigo-600 dark:text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-gray-800 transition-all duration-200 cursor-pointer"
                         >
                             <FontAwesomeIcon
                                 icon={faBars}
@@ -171,16 +165,15 @@ export default function Navbar() {
                 </nav>
             </div>
 
-            {/* Mobile sidebar overlay */}
+            {/* sidebar */}
             <div
-                className={`fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={() => setIsActive(false)}
             ></div>
 
-            {/* Mobile sidebar */}
             <div
                 className={`fixed flex flex-col gap-6 right-0 bg-white dark:bg-gray-900 shadow-2xl px-5 py-6 w-3/4 max-w-xs h-screen top-0
-                    transition-all duration-300 ease-in-out md:hidden z-50 rounded-l-xl
+                    transition-all duration-300 ease-in-out lg:hidden z-50 rounded-l-xl
                     ${isActive ? "translate-x-0" : "translate-x-full"}
                     ${isActive ? "opacity-100" : "opacity-0"}`}
             >
@@ -233,14 +226,6 @@ export default function Navbar() {
                     >
                         <FontAwesomeIcon icon={faBook} className="w-5 h-5" />
                         <span>Past Papers</span>
-                    </Link>
-
-                    <Link
-                        href="/resources"
-                        className={`flex items-center gap-3 py-3 px-4 rounded-lg transition-all duration-200 hover:bg-indigo-50 dark:hover:bg-gray-800 ${pathName === "/resources" ? "bg-indigo-50 dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 font-medium" : "text-gray-700 dark:text-gray-300"}`}
-                    >
-                        <FontAwesomeIcon icon={faFolderOpen} className="w-5 h-5" />
-                        <span>Resources</span>
                     </Link>
 
                     <Link

@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Image from 'next/image';
 
-function TestimonialCard({ name, role, testimonial }: { name: string, role: string, testimonial: string }) {
+function TestimonialCard({ name, role, testimonial, src }: { name: string, role: string, testimonial: string, src: string }) {
   return (
     <div className="bg-white rounded-2xl p-8 shadow transition-all border border-transparent hover:translate-y-[-5px] hover:shadow-lg hover:border-gray-200 relative before:content-['\201C'] before:absolute before:top-5 before:right-8 before:text-[80px] before:text-indigo-400 before:opacity-20 before:font-serif before:leading-none dark:bg-gray-800 dark:before:text-gray-100 dark:before:opacity-50">
       <div className="flex items-center mb-5">
         <Image
-          src="/api/placeholder/60/60"
           alt="Student"
+          src={src}
           width={60}
           height={60}
           className="w-[60px] h-[60px] rounded-full object-cover mr-4 border-3 border-indigo-400"

@@ -31,8 +31,6 @@ export default function PaperPage({ examPaper, subjectName, className }: { examP
     const [pdfError, setPdfError] = useState(false);
     const objectRef = useRef<HTMLObjectElement>(null);
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [deleteSuccess, setDeleteSuccess] = useState(false);
 
     useEffect(() => {
         if (objectRef.current) {

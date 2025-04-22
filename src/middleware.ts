@@ -1,15 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isPublicRoute = createRouteMatcher([
-  "/",
-  "/notes",
-  "/past-papers",
-  "/resources",
-  "/about",
-  "/sign-in",
-  "/sign-up(.*)",
-]);
+const isPrivateRoute = createRouteMatcher(["/admin"]);
 const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
@@ -21,7 +13,7 @@ export default clerkMiddleware(async (auth, req) => {
     const url = new URL("/", req.url);
     return NextResponse.redirect(url);
   }
-  if (!userId && !isPublicRoute(req)) {
+  if (!userId && isPrivateRoute(req)) {
     return redirectToSignIn();
   }
 });

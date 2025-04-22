@@ -20,7 +20,7 @@ function Footer() {
   return (
     <>
       <footer className="bg-gray-800 text-white pt-20 pb-8 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 px-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 px-3 max-w-[1400px] mx-auto w-full">
           <div className="footer-section">
             <h3 className="text-xl mb-6 font-semibold relative inline-block after:absolute after:bottom-[-10px] after:left-0 after:w-10 after:h-[3px] after:bg-indigo-600">StudyNotes</h3>
             <p className="text-gray-300 mb-6 text-base leading-relaxed">Your one-stop destination for quality study materials, notes, and past year questions.</p>
@@ -43,22 +43,22 @@ function Footer() {
           <div className="footer-section">
             <h3 className="text-xl mb-6 font-semibold relative inline-block after:absolute after:bottom-[-10px] after:left-0 after:w-10 after:h-[3px] after:bg-indigo-600">Quick Links</h3>
             <ul>
-              <FooterLink text="Home" />
-              <FooterLink text="Subjects" />
-              <FooterLink text="Past Papers" />
-              <FooterLink text="About Us" />
-              <FooterLink text="Contact" />
+              <FooterLink text="Home" link="/" />
+              <FooterLink text="Subjects" link="/notes" />
+              <FooterLink text="Past Papers" link="/past-papers" />
+              <FooterLink text="About Us" link="/about" />
+              <FooterLink text="Contact" link="/" />
             </ul>
           </div>
 
           <div className="footer-section">
             <h3 className="text-xl mb-6 font-semibold relative inline-block after:absolute after:bottom-[-10px] after:left-0 after:w-10 after:h-[3px] after:bg-indigo-600">Popular Subjects</h3>
             <ul>
-              <FooterLink text="Mathematics" />
-              <FooterLink text="Physics" />
-              <FooterLink text="Chemistry" />
-              <FooterLink text="Biology" />
-              <FooterLink text="Computer Science" />
+              <FooterLink text="Mathematics" link="/notes/mathematics" />
+              <FooterLink text="Physics" link="/notes/physics" />
+              <FooterLink text="Chemistry" link="/notes/chemistry" />
+              <FooterLink text="Biology" link="/notes/biology" />
+              <FooterLink text="Computer Science" link="/notes/computer science" />
             </ul>
           </div>
 
@@ -67,7 +67,7 @@ function Footer() {
             <ul className="contact-info">
               <li className="flex items-center mb-5 text-gray-300 text-base">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-4 text-indigo-500 text-lg" />
-                support@studynotes.com
+                support@notenest.com
               </li>
               <li className="flex items-center mb-5 text-gray-300 text-base">
                 <FontAwesomeIcon icon={faPhone} className="mr-4 text-indigo-500 text-lg" />
