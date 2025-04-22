@@ -60,7 +60,7 @@ export default function PaperListingPage({ examPapers, subjectName, className }:
     }
 
     return (
-        <div className="max-w-6xl mx-auto py-6">
+        <div className="max-w-6xl lg:mx-auto py-6 mx-5">
             <header className="mb-8">
                 <h1 className="text-2xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2 capitalize">
                     {subjectName} {className}
@@ -72,11 +72,11 @@ export default function PaperListingPage({ examPapers, subjectName, className }:
 
             <div className="mb-6">
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-500" size={18} />
+                    <Search className="search absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-500" size={18} />
                     <input
                         type="text"
                         placeholder="Search paper types..."
-                        className="min-w-full px-10 py-2 rounded-md border border-indigo-200 dark:border-indigo-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-800"
+                        className="xsm min-w-full md:min-w-full md:px-10 md:py-2 rounded-md border border-indigo-200 dark:border-indigo-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-800"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />

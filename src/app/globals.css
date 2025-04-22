@@ -137,3 +137,15 @@ body {
     margin-right: 7px;
   }
 }
+
+@media (max-width: 768px) {
+  .xsm {
+    min-width: 200px;
+    width: 100%;
+    padding: 8px 20px;
+  }
+  .search {
+    left: auto;
+    right: 12px;
+  }
+}

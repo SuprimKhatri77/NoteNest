@@ -22,7 +22,6 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const pathName = usePathname();
 
-    // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 10) {
@@ -38,12 +37,10 @@ export default function Navbar() {
         };
     }, []);
 
-    // Close sidebar on path change
     useEffect(() => {
         setIsActive(false);
     }, [pathName]);
 
-    // Handle body scroll lock when sidebar is open
     useEffect(() => {
         if (isActive) {
             document.body.style.overflow = 'hidden';
@@ -86,16 +83,18 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className="flex gap-4">
-                    <div className="flex w-full max-w-xs rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-300 dark:focus-within:ring-indigo-600 transition">
+                    <form action="/search" method="GET" className="flex w-full max-w-xs rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-300 dark:focus-within:ring-indigo-600 transition">
+
                         <input
                             type="text"
                             placeholder="Search..."
                             className="w-full px-3 py-1.5 text-sm bg-white dark:bg-zinc-900 text-black dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none"
+                            name="q"
                         />
                         <button className="bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-700 transition cursor-pointer">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4" />
                         </button>
-                    </div>
+                    </form>
 
                     <ClerkLoading>
                         <div
@@ -138,16 +137,17 @@ export default function Navbar() {
                         NoteNest
                     </Link>
                     <div className="flex gap-1 items-center ml-1">
-                        <div className="flex items-center w-full max-w-[180px] rounded-md overflow-hidden border border-gray-300 dark:border-gray-500 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-300 dark:focus-within:ring-indigo-600 transition-all duration-200">
+                        <form action="/search" method="GET" className="flex items-center w-full max-w-[180px] rounded-md overflow-hidden border border-gray-300 dark:border-gray-500 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-300 dark:focus-within:ring-indigo-600 transition-all duration-200">
                             <input
                                 type="text"
+                                name="q"
                                 className="w-full px-2 py-1.5 text-sm bg-white dark:bg-zinc-900 text-black dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none"
                                 placeholder="Search..."
                             />
                             <button className="bg-indigo-600 px-2 py-1.5 text-white hover:bg-indigo-700 transition-colors duration-200">
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4" />
                             </button>
-                        </div>
+                        </form>
 
                         <ModeToggle />
 
