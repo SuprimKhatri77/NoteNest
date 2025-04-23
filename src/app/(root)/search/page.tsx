@@ -1,8 +1,8 @@
 import FilteredResultPage from "@/components/FilteredResult"
 import prisma from "../../../../db/prisma"
 
-export default async function SearchPage({ searchParams }: { searchParams: { q?: string } }) {
-    const query = searchParams.q || ""
+export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
+    const { q: query } = await searchParams || ""
 
     const notes = await prisma.chapter.findMany({
         where: {
