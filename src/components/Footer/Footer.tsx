@@ -22,7 +22,7 @@ function Footer() {
       <footer className="bg-gray-800 text-white pt-20 pb-8 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 px-3 max-w-[1400px] mx-auto w-full">
           <div className="footer-section">
-            <h3 className="text-xl mb-6 font-semibold relative inline-block after:absolute after:bottom-[-10px] after:left-0 after:w-10 after:h-[3px] after:bg-indigo-600">StudyNotes</h3>
+            <h3 className="text-xl mb-6 font-semibold relative inline-block after:absolute after:bottom-[-10px] after:left-0 after:w-10 after:h-[3px] after:bg-indigo-600">NoteNest</h3>
             <p className="text-gray-300 mb-6 text-base leading-relaxed">Your one-stop destination for quality study materials, notes, and past year questions.</p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 bg-white bg-opacity-10 flex justify-center items-center rounded-full text-black transition-all hover:bg-indigo-600 hover:text-gray-100 hover:-translate-y-1 text-base">

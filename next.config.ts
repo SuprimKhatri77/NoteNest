@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   images: {
     domains: ["uploadthing.com", "utfs.io"],
     remotePatterns: [
@@ -28,10 +29,10 @@ const nextConfig: NextConfig = {
     ],
   },
   webpack: (config) => {
-    config.resolve.alias["pdfjs-dist"] = path.join(
-      __dirname,
-      "node_modules/pdfjs-dist/legacy/build/pdf"
-    );
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "pdfjs-dist": path.resolve(__dirname, "node_modules/pdfjs-dist"),
+    };
     return config;
   },
 };
