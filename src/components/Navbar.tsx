@@ -113,10 +113,10 @@ export default function Navbar() {
                             <UserButton />
                         </SignedIn>
                         <SignedOut>
-                            <Link href="/sign-up" className="py-2 px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
+                            <Link href="/sign-up" className="py-2 text-nowrap px-5 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-400 hover:text-white hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer dark:text-white">
                                 Sign up
                             </Link>
-                            <Link href="/sign-in" className="py-2 px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
+                            <Link href="/sign-in" className="py-2 text-nowrap px-5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 hover:translate-y-[-2px] transition-all hover:shadow text-center !cursor-pointer">
                                 Login
                             </Link>
                         </SignedOut>
@@ -167,7 +167,7 @@ export default function Navbar() {
 
             {/* sidebar */}
             <div
-                className={`fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm overflow-auto transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={() => setIsActive(false)}
             ></div>
 
@@ -241,12 +241,12 @@ export default function Navbar() {
                     <SignedOut>
                         <div className="flex flex-col gap-3">
                             <SignUpButton mode="modal">
-                                <button className="w-full py-2.5 px-4 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-all duration-200 text-center !cursor-pointer dark:text-indigo-400 dark:border-indigo-400 dark:hover:bg-gray-800">
+                                <button className="w-full text-nowrap py-2.5 px-4 border-2 border-indigo-600 text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-all duration-200 text-center !cursor-pointer dark:text-indigo-400 dark:border-indigo-400 dark:hover:bg-gray-800">
                                     Sign up
                                 </button>
                             </SignUpButton>
                             <SignInButton mode="modal">
-                                <button className="w-full py-2.5 px-4 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200 text-center !cursor-pointer">
+                                <button className="w-full text-nowrap py-2.5 px-4 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200 text-center !cursor-pointer">
                                     Login
                                 </button>
                             </SignInButton>

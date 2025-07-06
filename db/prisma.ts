@@ -255,3 +255,60 @@ export async function deleteExamPaper(id: string) {
     where: { id },
   });
 }
+
+// User Submission
+export async function userSubmission({
+  title,
+  description,
+  notesUrl,
+  className,
+  subjectName,
+  chapterNumber,
+}: {
+  title: string;
+  description: string;
+  notesUrl: string;
+  className: string;
+  subjectName: string;
+  chapterNumber: string;
+}) {
+  let subjectData = await prisma.subject.findUnique({
+    where: { name: subjectName },
+  });
+
+  if (!subjectData) {
+    subjectData = await prisma.subject.create({
+      data: { name: subjectName },
+    });
+  }
+
+  let classData = await prisma.class.findUnique({
+    where: {
+      name_subjectId: {
+        name: className,
+        subjectId: subjectData.id,
+      },
+    },
+  });
+
+  if (!classData) {
+    classData = await prisma.class.create({
+      data: {
+        name: className,
+        subjectId: subjectData.id,
+      },
+    });
+  }
+
+  const classId = classData.id;
+
+  await prisma.chapter.create({
+    data: {
+      title,
+      description,
+      notesUrl,
+      classId,
+      chapterNumber,
+    },
+  });
+}

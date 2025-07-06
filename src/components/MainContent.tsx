@@ -1,4 +1,4 @@
-
+"use client"
 import heroImg from '../../public/hero.avif'
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

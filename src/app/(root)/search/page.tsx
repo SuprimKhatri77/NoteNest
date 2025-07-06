@@ -1,5 +1,6 @@
 import FilteredResultPage from "@/components/FilteredResult"
 import prisma from "../../../../db/prisma"
+import { redirect } from "next/navigation"
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
     const { q: query } = await searchParams || ""
@@ -62,6 +63,9 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         }))
     ]
 
+    if (!query) {
+        return redirect("/")
+    }
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="mb-8">

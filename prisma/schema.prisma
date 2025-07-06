@@ -8,7 +8,7 @@ generator client {
   provider = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
   // output   = "./generated/postgres"
-}
+} 
 
 datasource db {
   provider = "postgresql"
@@ -30,6 +30,7 @@ model Class{
   subjectId String
   chapters Chapter[]
   examPapers ExamPaper[]
+  userSubmission UserSubmission[]
 
   @@unique([name,subjectId])
 }
@@ -58,5 +59,23 @@ model ExamPaper {
 
   @@unique([classId,type])
 }
+
+
+
+model UserSubmission{
+  id String @id @default(cuid())
+  title String
+  description String?
+  notesUrl String
+  chapterNumber String? 
+  class Class @relation(fields: [classId], references: [id])
+  classId String
+
+  @@unique([title,classId])
+
+}
+
+
+
 
 
